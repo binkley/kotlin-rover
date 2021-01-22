@@ -1,7 +1,7 @@
 package hm.binkley.rover
 
 import hm.binkley.rover.mathy.Instruction
-import hm.binkley.rover.mathy.Path.Companion.path
+import hm.binkley.rover.mathy.path
 import hm.binkley.rover.util.PairIterable.Companion.pairsOf
 import hm.binkley.rover.util.StringIterable.Companion.over
 import java.io.BufferedReader
@@ -28,7 +28,7 @@ object MathyMain {
         for (p in pairsOf(lines.subList(1, lines.size))) {
             var path = path(p.a)
             for (n in over(p.b)) path = path.next(Instruction.valueOf(n))
-            System.out.println(path)
+            println(path)
         }
     }
 }

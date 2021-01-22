@@ -12,7 +12,6 @@ enum class Rotation(
     S(0, 1, -1, 0);
 
     fun left() = values()[(ordinal + 1) % 4]
-
     fun right() = values()[(ordinal + 3) % 4]
 
     fun prod(at: Position) =
