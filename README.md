@@ -104,6 +104,9 @@ task. For the golf version of this problem, APL is ideal. However, I was
 unable to find a workable text editor on Mac OS X for the language, not to
 mention keyboard.
 
+I ignore that the grid is rectangular, and has edges. Mars is a sphere
+(roughly), not a plane, so is finite and unbounded.
+
 ---
 
 ## Approach
@@ -191,3 +194,4 @@ GitHub.
 
 - [_Circle group_](https://en.wikipedia.org/wiki/Circle_group)
 - [_Rotation matrix_](https://en.wikipedia.org/wiki/Rotation_matrix)
+- [_Spherical geometry_](https://en.wikipedia.org/wiki/Spherical_geometry)
