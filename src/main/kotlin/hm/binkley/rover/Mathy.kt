@@ -1,13 +1,9 @@
 package hm.binkley.rover
 
-import hm.binkley.rover.mathy.Instruction
+import hm.binkley.rover.mathy.Path
+import hm.binkley.rover.mathy.follow
 import hm.binkley.rover.mathy.path
-import hm.binkley.rover.util.PairIterable.Companion.pairsOf
-import hm.binkley.rover.util.StringIterable.Companion.over
-import java.io.BufferedReader
 import java.io.IOException
-import java.io.InputStreamReader
-import java.util.stream.Collectors
 
 /**
  * `MathMain` is a more OOP-y approach to the Rover problem based on
@@ -19,16 +15,21 @@ import java.util.stream.Collectors
 object Mathy {
     @JvmStatic
     fun main(vararg args: String) {
-        val lines = BufferedReader(InputStreamReader(System.`in`))
-            .lines()
-            .collect(Collectors.toList())
+        val lines = generateSequence(::readLine).toList()
+
         if (0 == lines.size % 2) throw IOException("Malformed input")
 
         // TODO: Skip grid size - what to do with it?
-        for (p in pairsOf(lines.subList(1, lines.size))) {
-            var path = path(p.a)
-            for (n in over(p.b)) path = path.next(Instruction.valueOf(n))
+        lines.drop(1).chunked(2).map {
+            it[0] to it[1]
+        }.forEach {
+            var path = path(it.first)
+            it.second.forEach {
+                path = it.guide(path)
+            }
             println(path)
         }
     }
 }
+
+private fun Char.guide(path: Path) = path.next(follow(toString()))

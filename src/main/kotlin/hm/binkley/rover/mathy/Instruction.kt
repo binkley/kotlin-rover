@@ -12,7 +12,8 @@ enum class Instruction {
         override fun rotation(facing: Rotation, at: Position): Rotation =
             facing.right()
 
-        override fun position(facing: Rotation, at: Position): Position = at
+        override fun position(facing: Rotation, at: Position): Position =
+            at
     },
     M {
         override fun rotation(facing: Rotation, at: Position): Rotation =
@@ -39,3 +40,5 @@ enum class Instruction {
         at: Position,
     ): Position
 }
+
+fun follow(ins: String) = Instruction.valueOf(ins)

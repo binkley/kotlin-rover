@@ -16,5 +16,5 @@ class Path(
 
 fun path(line: String) = line.split(space, 3).let {
     val (x, y, rot) = it
-    Path(Rotation.valueOf(rot), Position.at(x.toInt(), y.toInt()))
+    Path(rotate(rot), at(x.toInt(), y.toInt()))
 }
