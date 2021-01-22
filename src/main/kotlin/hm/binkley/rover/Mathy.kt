@@ -16,7 +16,7 @@ import java.util.stream.Collectors
  *
  * See [Mars Rover in Python and Haskell](http://arunrocks.com/mars-rover-in-python-and-haskell/).
  */
-object MathyMain {
+object Mathy {
     @JvmStatic
     fun main(vararg args: String) {
         val lines = BufferedReader(InputStreamReader(System.`in`))

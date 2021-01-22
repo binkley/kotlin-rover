@@ -19,7 +19,7 @@ internal class MainTest {
         val out = tapSystemOutNormalized {
             assertNothingWrittenToSystemErr {
                 withTextFromSystemIn(*inLines).execute {
-                    CStyleMain.main()
+                    CStyle.main()
                 }
             }
         }
@@ -34,7 +34,7 @@ internal class MainTest {
         val out = tapSystemOutNormalized {
             assertNothingWrittenToSystemErr {
                 withTextFromSystemIn(*inLines).execute {
-                    MathyMain.main()
+                    Mathy.main()
                 }
             }
         }
