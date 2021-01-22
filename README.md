@@ -21,7 +21,7 @@ width="20%"/>
 
 To build, use `./mvnw clean verify`.
 
-Try `./run` for a demonstration.
+Try `./run < src/test/resources/input` for a demonstration.
 
 There are no run-time dependencies beyond the Kotlin standard library.
 
