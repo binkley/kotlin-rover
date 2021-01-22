@@ -1,72 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ This is free and unencumbered software released into the public domain.
-  ~
-  ~ Please see https://github.com/binkley/binkley/blob/master/LICENSE.md.
-  -->
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>hm.binkley.rover</groupId>
-    <artifactId>rover</artifactId>
-    <version>4-SNAPSHOT</version>
+    <artifactId>kotlin-rover</artifactId>
+    <version>0-SNAPSHOT</version>
 
-    <issueManagement>
-        <system>Github</system>
-        <url>https://github.com/binkley/rover-problem/issues</url>
-    </issueManagement>
-
-    <scm>
-        <connection>scm:git:git://github.com/binkley/rover-problem.git
-        </connection>
-        <developerConnection>scm:git:git@github.com:binkley/rover-problem.git
-        </developerConnection>
-        <url>https://github.com/binkley/rover-problem</url>
-    </scm>
-
-    <organization>
-        <name>binkley's BLOG</name>
-        <url>http://binkley.blogspot.com</url>
-    </organization>
-
-    <developers>
-        <developer>
-            <id>binkley</id>
-            <name>B. K. Oxley (binkley)</name>
-            <email>binkley@alumni.rice.edu</email>
-            <organization>The Oxley Family</organization>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </developer>
-    </developers>
+    <name>Kotlin Rover</name>
+    <description>Kotlin serialization</description>
 
     <licenses>
         <license>
             <name>Public Domain</name>
-            <url>http://unlicense.org/</url>
-            <distribution>repo</distribution>
+            <url>http://unlicense.org/UNLICENSE</url>
         </license>
     </licenses>
 
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/binkley/kotlin-rover/issues</url>
+    </issueManagement>
+
+    <scm>
+        <connection>scm:git:git://github.com/binkley/kotlin-rover.git
+        </connection>
+        <developerConnection>scm:git:git@github.com:binkley/kotlin-rover.git
+        </developerConnection>
+        <url>https://github.com/binkley/kotlin-rover</url>
+    </scm>
+
     <properties>
         <!-- @formatter:off -->
-        <assertj.version>3.18.1</assertj.version>
+        <buildplan-maven-plugin.version>1.4</buildplan-maven-plugin.version>
+        <dependency-check-maven.version>6.0.5</dependency-check-maven.version>
+        <detekt-maven-plugin.version>1.15.0.1</detekt-maven-plugin.version>
+        <failIfNoTests>true</failIfNoTests>
+        <failsafe.printSummary>false</failsafe.printSummary>
+        <generateBackupPoms>false</generateBackupPoms>
+        <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
         <java.charset>UTF-8</java.charset>
         <jdk.version>11</jdk.version>
         <junit.version>5.7.0</junit.version>
+        <kotest.version>4.4.0.RC2</kotest.version>
+        <kotlin.version>1.4.21</kotlin.version>
+        <ktlint-maven-plugin.version>1.7.0</ktlint-maven-plugin.version>
         <lombok.version>1.18.16</lombok.version>
-        <main.class>hm.binkley.rover.CStyleMain</main.class>
+        <main.class>hm.binkley.rover.CStyleMainKt</main.class>
+        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
+        <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
+        <maven-help-plugin.version>3.2.0</maven-help-plugin.version>
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <project.build.outputEncoding>${java.charset}</project.build.outputEncoding>
+        <owasp.skip>false</owasp.skip>
         <project.build.sourceEncoding>${java.charset}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${java.charset}</project.reporting.outputEncoding>
-        <project.reporting.sourceEncoding>${java.charset}</project.reporting.sourceEncoding>
         <system-lambda.version>1.2.0</system-lambda.version>
+        <surefire.printSummary>false</surefire.printSummary>
+        <versions-maven-plugin.version>2.8.1</versions-maven-plugin.version>
         <!-- @formatter:on -->
     </properties>
 
@@ -77,11 +72,22 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>jsr250-api</artifactId>
-            <version>1.0</version>
-            <scope>provided</scope>
+            <!-- TODO: Remove when kotlinx-coroutines catches up -->
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-common</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>${kotlin.version}</version>
         </dependency>
 
         <dependency>
@@ -96,12 +102,20 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
+            <groupId>io.kotest</groupId>
+            <artifactId>kotest-runner-junit5-jvm</artifactId>
+            <version>${kotest.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.kotest</groupId>
+            <artifactId>kotest-assertions-core-jvm</artifactId>
+            <version>${kotest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>com.github.stefanbirkner</groupId>
             <artifactId>system-lambda</artifactId>
@@ -111,44 +125,220 @@
     </dependencies>
 
     <build>
+        <defaultGoal>clean verify</defaultGoal>
+
+        <!-- @formatter:off -->
+        <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
+        <!-- @formatter:on -->
+
         <plugins>
+            <plugin>
+                <artifactId>maven-help-plugin</artifactId>
+                <version>${maven-help-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>fr.jcgay.maven.plugins</groupId>
+                <artifactId>buildplan-maven-plugin</artifactId>
+                <version>${buildplan-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clean-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>download-sources</id>
+                        <configuration>
+                            <silent>true</silent>
+                        </configuration>
+                        <goals>
+                            <goal>sources</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>download-javadocs</id>
+                        <configuration>
+                            <classifier>javadoc</classifier>
+                            <silent>true</silent>
+                        </configuration>
+                        <goals>
+                            <goal>resolve</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <configuration>
+                    <args>
+                        <arg>-Werror</arg>
+                    </args>
+                    <jvmTarget>${jdk.version}</jvmTarget>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>compile-kotlin</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile-kotlin</id>
+                        <configuration>
+                            <skip>${maven.test.skip}</skip>
+                        </configuration>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <compilerArgs>
-                        <compilerArg>-parameters</compilerArg>
-                        <compilerArg>-Xlint:all</compilerArg>
-                    </compilerArgs>
-                    <debug>true</debug>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
-                </configuration>
+                <executions>
+                    <!-- Replacing default-compile as it is treated specially by maven -->
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>none</phase>
+                    </execution>
+                    <!-- Replacing default-testCompile as it is treated specially by maven -->
+                    <execution>
+                        <id>default-testCompile</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
             </plugin>
             <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>${maven-shade-plugin.version}</version>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven-assembly-plugin.version}</version>
                 <configuration>
-                    <dependencyReducedPomLocation>
-                        ${project.build.directory}/dependency-reduced-pom.xml
-                    </dependencyReducedPomLocation>
-                    <transformers>
-                        <transformer
-                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <archive>
+                        <manifest>
                             <mainClass>${main.class}</mainClass>
-                        </transformer>
-                    </transformers>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
                 </configuration>
                 <executions>
                     <execution>
+                        <id>make-assembly</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>shade</goal>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>INSTRUCTION</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>93%</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.gantsign.maven</groupId>
+                <artifactId>ktlint-maven-plugin</artifactId>
+                <version>${ktlint-maven-plugin.version}</version>
+                <configuration>
+                    <verbose>true</verbose>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>format</goal>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.ozsie</groupId>
+                <artifactId>detekt-maven-plugin</artifactId>
+                <version>${detekt-maven-plugin.version}</version>
+                <configuration>
+                    <config>config/detekt.yml</config>
+                    <report>
+                        <report>
+                            html:${basedir}/target/site/detekt/index.html
+                        </report>
+                    </report>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${dependency-check-maven.version}</version>
+                <configuration>
+                    <skip>${owasp.skip}</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
