@@ -20,15 +20,17 @@ object Mathy {
         if (0 == lines.size % 2) throw IOException("Malformed input")
 
         // TODO: Skip grid size - what to do with it?
-        lines.drop(1).chunked(2).map {
-            it[0] to it[1]
-        }.forEach {
-            var path = path(it.first)
-            it.second.forEach {
-                path = it.guide(path)
+        lines.drop(1)
+            .chunked(2)
+            .map {
+                it[0] to it[1]
+            }.forEach {
+                var path = path(it.first)
+                it.second.forEach {
+                    path = it.guide(path)
+                }
+                println(path)
             }
-            println(path)
-        }
     }
 }
 
