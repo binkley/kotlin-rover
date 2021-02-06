@@ -161,9 +161,9 @@ solutions&mdash;["C" style](./src/main/kotlin/hm/binkley/rover/CStyle.kt) and
 coworkers, both of which surprised them. I expected that
 [matrix form](https://en.wikipedia.org/wiki/Rotation_matrix) of
 [the circle group](https://en.wikipedia.org/wiki/Circle_group) is unfamiliar
-to most. Myself, I was surprised that the "C" style was unfamiliar!  
-None I spoke with had familiarity with "C" or FORTRAN or other classical means
-of programming. In fact, the "math" style, though abstract algebra was not
+to most. Myself, I was surprised that the "C" style was unfamiliar! None I
+spoke with had familiarity with "C" or FORTRAN or other classical means of
+programming. In fact, the "math" style, though abstract algebra was not
 understood, spoke more to them by its use of OOP.
 
 An actual Mars Rover would code using the "C" style approach&mdash;you have
