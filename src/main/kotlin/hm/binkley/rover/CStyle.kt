@@ -1,6 +1,5 @@
 package hm.binkley.rover
 
-import java.io.IOException
 import java.lang.System.out
 
 private var space = " ".toRegex()
@@ -15,7 +14,7 @@ object CStyle {
     fun main(vararg args: String) {
         val lines = generateSequence(::readLine).toList()
 
-        if (0 == lines.size % 2) throw IOException("Malformed input")
+        require(0 != lines.size % 2) { "Malformed input" }
 
         // TODO: Skip grid size - what to do with it?
         var i = 1

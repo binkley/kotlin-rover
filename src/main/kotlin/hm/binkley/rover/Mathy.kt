@@ -3,7 +3,6 @@ package hm.binkley.rover
 import hm.binkley.rover.mathy.Path
 import hm.binkley.rover.mathy.follow
 import hm.binkley.rover.mathy.path
-import java.io.IOException
 
 /**
  * `MathMain` is a more OOP-y approach to the Rover problem based on
@@ -17,7 +16,7 @@ object Mathy {
     fun main(vararg args: String) {
         val lines = generateSequence(::readLine).toList()
 
-        if (0 == lines.size % 2) throw IOException("Malformed input")
+        require(0 != lines.size % 2) { "Malformed input" }
 
         // TODO: Skip grid size - what to do with it?
         lines.drop(1)
