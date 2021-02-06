@@ -3,10 +3,11 @@
 align="right"/>
 </a>
 
-# The Rover Problem in Kotlin
+# The Mars Rover Problem in Kotlin
 
-Tackle the [Rover Problem](https://find.me) in Kotlin. This code is a "finger
-exercise" written for pleasure.
+Tackle the
+[Mars Rover Problem](http://www.techinterviewpuzzles.com/2010/09/mars-rovers-thoughtworks-puzzles.html)
+in Kotlin. This code is a "finger exercise" written for pleasure.
 
 <a href="https://xkcd.com/695/">
 <img src="./images/lost.png" alt="Spirit" align="right"
