@@ -49,7 +49,7 @@ A squad of robotic rovers are to be landed by NASA on a plateau on Mars. This
 plateau, which is curiously rectangular, must be navigated by the rovers so
 that their on-board cameras can get a complete view of the surrounding terrain
 to send back to Earth. A rover’s position and location is represented by a
-combination of x and y coordinates and a letter representing one of the four
+combination of x and y coordinates, and a letter representing one of the four
 cardinal compass points. The plateau is divided up into a grid to simplify
 navigation. An example position might be 0, 0, N, which means the rover is in
 the bottom left corner and facing North. In order to control a rover, NASA
@@ -108,6 +108,12 @@ mention keyboard.
 I ignore that the grid is rectangular, and has edges. Mars is a sphere
 (roughly), not a plane, so is finite and unbounded.
 
+<<<<<<< HEAD Note that the problem is _underspecified_, which might have been
+intentional. For example, how should bad input be handled? ======= Note that
+the problem is _underspecified_, which might have been intentional. For
+example, how should bad input be handled?
+> > > > > > > 62f0abf (README.md)
+
 ---
 
 ## Approach
@@ -163,6 +169,40 @@ Using matrices, rotations are products; distances remain sums. This can be
 seen in that ``[ 0 -1, 1 0 ] ^ 3`` (three lefts) is ``[ 0 1, -1 0 ]`` (one
 right).
 
+### Solution styles
+
+I presented these
+solutions&mdash;["C" style](./src/main/kotlin/hm/binkley/rover/CStyle.kt) and
+["math" style](./src/main/kotlin/hm/binkley/rover/Mathy.kt)&mdash;to
+coworkers, both of which surprised them. I expected that
+[matrix form](https://en.wikipedia.org/wiki/Rotation_matrix) of
+[the circle group](https://en.wikipedia.org/wiki/Circle_group) is unfamiliar
+to most. Myself, I was surprised that the "C" style was unfamiliar!  
+None I spoke with had familiarity with "C" or FORTRAN or other classical means
+of programming. In fact, the "math" style, though abstract algebra was not
+understood, spoke more to them by its use of OOP.
+
+An actual Mars Rover would code using the "C" style approach&mdash;you have
+limited hardware, harsh conditions, and need absolute certainty of
+correctness, something more easily confirmed automatically with a "C"
+style of code than OOP. Automated, or formal, verification
+is [an important research area](https://en.wikipedia.org/wiki/Formal_verification)
+in CS.
+
+### Problem problems
+
+I note that the problem as given is _underspecified_. I suspect this is
+intentional: that the problem-givers are looking to see if problem-solvers
+notice, and if so, how they might address. For example:
+
+- Why does the grid have a boundary limit?
+- The sample input does not approach the boundary
+- What should be the behavior of invalid input?
+
+An actual Mars Rover would need to handle these sensibly, and they are not, in
+fact, simple problems. Consider other programmed hardware, such as a
+pacemaker: How to stay alive when there is malformed software input?
+
 ---
 
 ## Releases
@@ -192,6 +232,12 @@ GitHub.
 ---
 
 ## Further reading
+
+### The problem
+
+- [_Mars Exploration Rovers_](https://mars.nasa.gov/mer/)
+
+### The "math" solution
 
 - [_Circle group_](https://en.wikipedia.org/wiki/Circle_group)
 - [_Rotation matrix_](https://en.wikipedia.org/wiki/Rotation_matrix)
