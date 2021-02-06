@@ -5,11 +5,6 @@ import com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOutNormalized
 import com.github.stefanbirkner.systemlambda.SystemLambda.withTextFromSystemIn
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.util.regex.Pattern
-
-private val newline = Pattern.compile("\\n")
 
 internal class MainTest {
     private val inLines = lines("/input")
@@ -17,32 +12,35 @@ internal class MainTest {
 
     @Test
     fun `should steer C-style`() {
-        val out = tapSystemOutNormalized {
+        val stdout = tapSystemOutNormalized {
             assertNothingWrittenToSystemErr {
-                withTextFromSystemIn(*inLines).execute {
+                withTextFromSystemIn(*inLines.toTypedArray()).execute {
                     CStyle.main()
                 }
             }
         }
 
-        newline.split(out) shouldBe expectedOutLines
+        stdout.realLines() shouldBe expectedOutLines
     }
 
     @Test
     fun `should steer math-style`() {
         val out = tapSystemOutNormalized {
             assertNothingWrittenToSystemErr {
-                withTextFromSystemIn(*inLines).execute {
+                withTextFromSystemIn(*inLines.toTypedArray()).execute {
                     Mathy.main()
                 }
             }
         }
 
-        newline.split(out) shouldBe expectedOutLines
+        out.realLines() shouldBe expectedOutLines
     }
 
-    private fun lines(resourcePath: String) = BufferedReader(
-        InputStreamReader(javaClass.getResourceAsStream(resourcePath)))
-        .lines()
-        .toArray { size -> Array(size) { "" } }
+    private fun lines(resourcePath: String) =
+        requireNotNull(this::class.java.getResource(resourcePath))
+            .readText()
+            .realLines()
 }
+
+// Ignore unreal "line" after terminal newline
+private fun String.realLines() = lines().dropLast(1)
