@@ -7,39 +7,30 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
 internal class MainTest {
-    private val inLines = lines("/input")
-    private val expectedOutLines = lines("/output")
+    @Test
+    fun `should steer C-style`() = CStyle::main.assertInAndOut()
 
     @Test
-    fun `should steer C-style`() {
-        val stdout = tapSystemOutNormalized {
-            assertNothingWrittenToSystemErr {
-                withTextFromSystemIn(*inLines.toTypedArray()).execute {
-                    CStyle.main()
+    fun `should steer math-style`() = Mathy::main.assertInAndOut()
+
+    companion object {
+        private val inLines = lines("/input")
+        private val expectedOutLines = lines("/output")
+
+        private fun ((Array<out String>) -> Unit).assertInAndOut() =
+            tapSystemOutNormalized {
+                assertNothingWrittenToSystemErr {
+                    withTextFromSystemIn(*inLines.toTypedArray()).execute {
+                        this(emptyArray())
+                    }
                 }
-            }
-        }
+            }.realLines() shouldBe expectedOutLines
 
-        stdout.realLines() shouldBe expectedOutLines
+        private fun lines(resourcePath: String) =
+            requireNotNull(this::class.java.getResource(resourcePath))
+                .readText()
+                .realLines()
     }
-
-    @Test
-    fun `should steer math-style`() {
-        val out = tapSystemOutNormalized {
-            assertNothingWrittenToSystemErr {
-                withTextFromSystemIn(*inLines.toTypedArray()).execute {
-                    Mathy.main()
-                }
-            }
-        }
-
-        out.realLines() shouldBe expectedOutLines
-    }
-
-    private fun lines(resourcePath: String) =
-        requireNotNull(this::class.java.getResource(resourcePath))
-            .readText()
-            .realLines()
 }
 
 // Ignore unreal "line" after terminal newline
