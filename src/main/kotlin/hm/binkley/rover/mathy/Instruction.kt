@@ -1,44 +1,16 @@
 package hm.binkley.rover.mathy
 
-enum class Instruction {
-    L {
-        override fun rotation(facing: Rotation, at: Position): Rotation =
-            facing.left()
+enum class Instruction(
+    private val spin: (Rotation, Position) -> Rotation,
+    private val move: (Rotation, Position) -> Position,
+) {
+    L({ facing, _ -> facing.left() }, { _, at -> at }),
+    R({ facing, _ -> facing.right() }, { _, at -> at }),
+    M({ facing, _ -> facing }, { facing, at -> at.forward(facing) }),
+    B({ facing, _ -> facing }, { facing, at -> at.back(facing) });
 
-        override fun position(facing: Rotation, at: Position): Position =
-            at
-    },
-    R {
-        override fun rotation(facing: Rotation, at: Position): Rotation =
-            facing.right()
-
-        override fun position(facing: Rotation, at: Position): Position =
-            at
-    },
-    M {
-        override fun rotation(facing: Rotation, at: Position): Rotation =
-            facing
-
-        override fun position(facing: Rotation, at: Position): Position =
-            at.forward(facing)
-    },
-    B {
-        override fun rotation(facing: Rotation, at: Position): Rotation =
-            facing
-
-        override fun position(facing: Rotation, at: Position): Position =
-            at.back(facing)
-    };
-
-    abstract fun rotation(
-        facing: Rotation,
-        at: Position,
-    ): Rotation
-
-    abstract fun position(
-        facing: Rotation,
-        at: Position,
-    ): Position
+    fun rotation(facing: Rotation, at: Position): Rotation = spin(facing, at)
+    fun position(facing: Rotation, at: Position): Position = move(facing, at)
 }
 
 fun follow(ins: String) = Instruction.valueOf(ins)
