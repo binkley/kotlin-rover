@@ -197,7 +197,7 @@ notice, and if so, how they might address. For example:
 
 - Why does the grid have a boundary limit?
 - The sample input does not approach the boundary
-- What should be the behavior of invalid input?
+- What should be the behavior for invalid input?
 
 An actual Mars Rover would need to handle these sensibly, and they are not, in
 fact, simple problems. Consider other programmed hardware, such as a
