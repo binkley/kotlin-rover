@@ -12,6 +12,7 @@ private var space = " ".toRegex()
 object CStyle {
     @JvmStatic
     fun main(vararg args: String) {
+        // TODO: Stream input, rather than suck it all in up front
         val lines = generateSequence(::readLine).toList()
 
         require(0 != lines.size % 2) { "Malformed input" }
