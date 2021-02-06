@@ -97,29 +97,13 @@ MMRMMRMRRM
 
 ---
 
-## Remarks
-
-Honestly I would prefer a solution in
-[APL](http://archive.vector.org.uk/art10011550), extremely well-suited to the
-task. For the golf version of this problem, APL is ideal. However, I was
-unable to find a workable text editor on Mac OS X for the language, not to
-mention keyboard.
-
-I ignore that the grid is rectangular, and has edges. Mars is a sphere
-(roughly), not a plane, so is finite and unbounded.
-
-<<<<<<< HEAD Note that the problem is _underspecified_, which might have been
-intentional. For example, how should bad input be handled? ======= Note that
-the problem is _underspecified_, which might have been intentional. For
-example, how should bad input be handled?
-> > > > > > > 62f0abf (README.md)
-
----
-
 ## Approach
 
 The Rover Problem describes a series of vector additions in terms of simple
 commands to a hypothetical Mars Rover vehicle.
+
+I ignore that the grid is rectangular, and has edges. Mars is a sphere
+(roughly), not a plane, so is finite yet unbounded.
 
 The rover may 1) turn left (L), 2) turn right (R), or 3) move forward 1. It
 has an initial compass orientation relative to the Euclidean plane, and begins
@@ -202,6 +186,12 @@ notice, and if so, how they might address. For example:
 An actual Mars Rover would need to handle these sensibly, and they are not, in
 fact, simple problems. Consider other programmed hardware, such as a
 pacemaker: How to stay alive when there is malformed software input?
+
+Honestly I would prefer a solution in
+[APL](http://archive.vector.org.uk/art10011550), extremely well-suited to the
+task. For the golf version of this problem, APL is ideal. However, I was
+unable to find a workable text editor on Mac OS X for the language, not to
+mention keyboard.
 
 ---
 
