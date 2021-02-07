@@ -12,13 +12,8 @@ private var space = " ".toRegex()
 object CStyle {
     @JvmStatic
     fun main(vararg args: String) {
-        // TODO: Stream input, rather than suck it all in up front
-        val lines = generateSequence(::readLine).toList()
-
-        require(1 == lines.size % 2) { "Malformed input" }
-
-        // TODO: Skip grid size - what to do with it?
-        var i = 1
+        val lines = input()
+        var i = 0
         val l = lines.size
         while (i < l) {
             val co = lines[i]

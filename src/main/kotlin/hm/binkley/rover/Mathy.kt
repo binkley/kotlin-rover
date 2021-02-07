@@ -14,14 +14,7 @@ import hm.binkley.rover.mathy.path
 object Mathy {
     @JvmStatic
     fun main(vararg args: String) {
-        // TODO: Stream input, rather than suck it all in up front
-        val lines = generateSequence(::readLine).toList()
-
-        require(1 == lines.size % 2) { "Malformed input" }
-
-        // TODO: Skip grid size - what to do with it?
-        lines.drop(1)
-            .chunked(2)
+        input().chunked(2)
             .forEach {
                 var path = path(it[0])
                 it[1].forEach {
