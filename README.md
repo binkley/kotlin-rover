@@ -183,6 +183,7 @@ For example:
 - Why does the grid have a boundary limit?
 - The sample input does not approach the boundary
 - What should be the behavior for invalid input?
+- How to manage a "squad" of rovers?  Can the crash into each other?
 
 An actual Mars Rover would need to handle these sensibly, and they are not, in
 fact, simple problems. Consider other programmed hardware, such as a
