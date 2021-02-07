@@ -228,6 +228,13 @@ GitHub.
 
 - [_Mars Exploration Rovers_](https://mars.nasa.gov/mer/)
 
+### The "C" solution
+
+- [_Kotlin/Native for
+  Native_](https://kotlinlang.org/docs/reference/native-overview.html)
+- [_Kotlin/Native
+  interoperability_](https://kotlinlang.org/docs/reference/native/c_interop.html)
+
 ### The "math" solution
 
 - [_Circle group_](https://en.wikipedia.org/wiki/Circle_group)
