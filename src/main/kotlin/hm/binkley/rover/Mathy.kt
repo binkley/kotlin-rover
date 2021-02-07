@@ -14,12 +14,11 @@ import hm.binkley.rover.mathy.path
 object Mathy {
     @JvmStatic
     fun main(vararg args: String) {
-        input().chunked(2)
-            .forEach {
-                var path = path(it[0])
-                it[1].forEach {
-                    path = it.guide(path)
-                }
+        inputLines().chunked(2)
+            .map { it[0] to it[1] }
+            .forEach { (starting, instructions) ->
+                var path = path(starting)
+                instructions.forEach { path = it.guide(path) }
                 println(path)
             }
     }

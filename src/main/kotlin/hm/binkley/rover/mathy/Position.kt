@@ -1,6 +1,9 @@
 package hm.binkley.rover.mathy
 
-data class Position(val x: Int, val y: Int)
+data class Position(
+    val x: Int,
+    val y: Int,
+)
 
 private val E0 = at(1, 0)
 

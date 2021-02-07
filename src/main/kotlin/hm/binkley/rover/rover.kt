@@ -1,6 +1,6 @@
 package hm.binkley.rover
 
-fun input(): List<String> {
+fun inputLines(): List<String> {
     // TODO: Stream input, rather than suck it all in up front
     val lines = generateSequence(::readLine).toList()
 

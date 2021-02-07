@@ -2,7 +2,7 @@ package hm.binkley.rover.mathy
 
 private val space = " ".toRegex()
 
-class Path(
+data class Path(
     private val facing: Rotation,
     private val at: Position,
 ) {

@@ -12,7 +12,7 @@ private var space = " ".toRegex()
 object CStyle {
     @JvmStatic
     fun main(vararg args: String) {
-        val lines = input()
+        val lines = inputLines()
         var i = 0
         val l = lines.size
         while (i < l) {
