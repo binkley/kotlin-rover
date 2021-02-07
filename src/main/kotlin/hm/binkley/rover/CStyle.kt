@@ -15,7 +15,7 @@ object CStyle {
         // TODO: Stream input, rather than suck it all in up front
         val lines = generateSequence(::readLine).toList()
 
-        require(0 != lines.size % 2) { "Malformed input" }
+        require(1 == lines.size % 2) { "Malformed input" }
 
         // TODO: Skip grid size - what to do with it?
         var i = 1
