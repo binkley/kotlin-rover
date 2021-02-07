@@ -175,9 +175,10 @@ in CS.
 
 ### Problem problems
 
-I note that the problem as given is _underspecified_. I suspect this is
-intentional: that the problem-givers are looking to see if problem-solvers
-notice, and if so, how they might address. For example:
+I note that the problem as given is both _under-specified_ and
+_over-specified_. I suspect this is intentional: that the problem-givers are
+looking to see if problem-solvers notice, and if so, how they might address.
+For example:
 
 - Why does the grid have a boundary limit?
 - The sample input does not approach the boundary
