@@ -14,8 +14,8 @@ import hm.binkley.rover.mathy.path
 object Mathy {
     @JvmStatic
     fun main(vararg args: String) =
-        inputLines().chunked(2).forEach { (starting, instructions) ->
-            var path = path(starting)
+        inputLines().chunked(2).forEach { (startAt, instructions) ->
+            var path = path(startAt)
             instructions.forEach { path = it.from(path) }
             println(path)
         }
