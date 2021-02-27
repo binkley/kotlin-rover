@@ -13,13 +13,12 @@ import hm.binkley.rover.mathy.path
  */
 object Mathy {
     @JvmStatic
-    fun main(vararg args: String) {
+    fun main(vararg args: String) =
         inputLines().chunked(2).forEach { (starting, instructions) ->
             var path = path(starting)
-            instructions.forEach { move -> path = move.from(path) }
+            instructions.forEach { path = it.from(path) }
             println(path)
         }
-    }
 }
 
 private fun Char.from(path: Path) = path.next(follow(toString()))

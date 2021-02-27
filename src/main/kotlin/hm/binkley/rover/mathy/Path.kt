@@ -14,7 +14,7 @@ data class Path(
     override fun toString() = "%d %d %s".format(at.x, at.y, facing)
 }
 
-fun path(line: String) = line.split(space, 3).let {
-    val (x, y, rot) = it
-    Path(rotate(rot), at(x.toInt(), y.toInt()))
+fun path(line: String): Path {
+    val (x, y, rot) = line.split(space, 3)
+    return Path(rotate(rot), at(x.toInt(), y.toInt()))
 }

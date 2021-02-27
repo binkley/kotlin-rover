@@ -13,4 +13,4 @@ enum class Instruction(
     fun position(facing: Rotation, at: Position): Position = move(facing, at)
 }
 
-fun follow(ins: String) = Instruction.valueOf(ins)
+fun follow(input: String) = Instruction.valueOf(input)
