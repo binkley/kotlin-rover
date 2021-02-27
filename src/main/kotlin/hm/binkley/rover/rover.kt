@@ -1,7 +1,6 @@
 package hm.binkley.rover
 
 fun inputLines(): List<String> {
-    // TODO: Stream input, rather than suck it all in up front
     val lines = generateSequence(::readLine).toList()
 
     // TODO: Skip grid size - what to do with it?

@@ -18,10 +18,10 @@ object Mathy {
             .map { it[0] to it[1] }
             .forEach { (starting, instructions) ->
                 var path = path(starting)
-                instructions.forEach { path = it.guide(path) }
+                instructions.forEach { move -> path = move.from(path) }
                 println(path)
             }
     }
 }
 
-private fun Char.guide(path: Path) = path.next(follow(toString()))
+private fun Char.from(path: Path) = path.next(follow(toString()))
