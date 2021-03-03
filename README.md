@@ -189,7 +189,7 @@ For example:
 
 An actual Mars Rover would need to handle these sensibly, and they are not, in
 fact, simple problems. Consider other programmed hardware, such as a
-pacemaker: How to stay alive when there is malformed software input?
+pacemaker: How to stay alive when there is malformed input to the software?
 
 Honestly I would prefer a solution in
 [APL](http://archive.vector.org.uk/art10011550), extremely well-suited to the
