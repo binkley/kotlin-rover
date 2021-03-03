@@ -195,7 +195,7 @@ Honestly I would prefer a solution in
 [APL](http://archive.vector.org.uk/art10011550), extremely well-suited to the
 task. For the golf version of this problem, APL is ideal. However, I was
 unable to find a workable text editor on Mac OS X for the language, not to
-mention keyboard.
+mention [keyboard](http://www.users.cloud9.net/~bradmcc/gif/APL_keyboard.gif).
 
 ---
 
