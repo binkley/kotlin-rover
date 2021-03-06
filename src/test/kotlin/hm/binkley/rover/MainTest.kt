@@ -28,6 +28,7 @@ internal class MainTest {
         fun assertions() = listOf(
             EntryPoint::assertInAndOut,
             EntryPoint::assertMissingBoundary,
+            EntryPoint::assertMissingPosition,
             EntryPoint::assertBadStartingPosition,
         )
     }
@@ -53,6 +54,17 @@ private fun EntryPoint.assertMissingBoundary() =
         }
     }.message shouldBe "Malformed input"
 
+private fun EntryPoint.assertMissingPosition() =
+    assertThrows<IllegalArgumentException> {
+        assertNothingWrittenToSystemErr {
+            tapSystemOutNormalized {
+                withTextFromSystemIn(*missingPositionInLines.toTypedArray()).execute {
+                    this(emptyArray())
+                }
+            }.realLines() shouldBe goodExpectedOutLines
+        }
+    }.message shouldBe "Malformed input"
+
 private fun EntryPoint.assertBadStartingPosition() =
     assertThrows<IllegalArgumentException> {
         assertNothingWrittenToSystemErr {
@@ -67,6 +79,7 @@ private fun EntryPoint.assertBadStartingPosition() =
 private val goodInLines = lines("/input")
 private val goodExpectedOutLines = lines("/output")
 private val missingBoundaryInLines = lines("/missing-boundary")
+private val missingPositionInLines = lines("/missing-position")
 private val badStartingPositionInLines = lines("/bad-starting-position")
 
 // Ignore unreal "line" after terminal newline
