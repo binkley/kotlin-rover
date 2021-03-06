@@ -17,7 +17,7 @@ object CStyle {
         val l = lines.size
         while (i < l) {
             val co = lines[i]
-            val coords = space.split(co, 3)
+            val coords = parseCoordinates(co)
             var x = coords[0].toInt()
             var y = coords[1].toInt()
             var d = "ENWS".indexOf(coords[2][0])
@@ -41,5 +41,13 @@ object CStyle {
             out.printf("%d %d %c%n", x, y, "ENWS"[d % 4])
             ++i
         }
+    }
+}
+
+private fun parseCoordinates(line: String): List<String> {
+    val coords = space.split(line)
+    return when (coords.size) {
+        3 -> coords
+        else -> throw IllegalArgumentException("Malformed input: $line")
     }
 }

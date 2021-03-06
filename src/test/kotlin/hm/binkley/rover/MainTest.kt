@@ -21,11 +21,20 @@ internal class MainTest {
     @Test
     fun `should do nothing on bad input math-style`() =
         Mathy::main.assertMissingBoundary()
+
+    @Test
+    fun `should do nothing on bad starting position C-style`() =
+        CStyle::main.assertBadStartingPosition()
+
+    @Test
+    fun `should do nothing on bad starting position math-style`() =
+        Mathy::main.assertBadStartingPosition()
 }
 
 private val goodInLines = lines("/input")
 private val goodExpectedOutLines = lines("/output")
 private val missingBoundaryInLines = lines("/missing-boundary")
+private val badStartingPositionInLines = lines("/bad-starting-position")
 
 private fun ((Array<out String>) -> Unit).assertInAndOut() =
     assertNothingWrittenToSystemErr {
@@ -46,6 +55,17 @@ private fun ((Array<out String>) -> Unit).assertMissingBoundary() =
             }.realLines() shouldBe goodExpectedOutLines
         }
     }.message shouldBe "Malformed input"
+
+private fun ((Array<out String>) -> Unit).assertBadStartingPosition() =
+    assertThrows<IllegalArgumentException> {
+        assertNothingWrittenToSystemErr {
+            tapSystemOutNormalized {
+                withTextFromSystemIn(*badStartingPositionInLines.toTypedArray()).execute {
+                    this(emptyArray())
+                }
+            }.realLines() shouldBe goodExpectedOutLines
+        }
+    }.message shouldBe "Malformed input: 1 N"
 
 // Ignore unreal "line" after terminal newline
 private fun String.realLines() = lines().dropLast(1)
