@@ -171,9 +171,9 @@ understood, spoke more to them by its use of OOP.
 An actual Mars Rover would code using the "C" style approach&mdash;you have
 limited hardware, harsh conditions, and need absolute certainty of
 correctness, something more easily confirmed automatically with a "C"
-style of code than OOP. Automated, or formal, verification
-is [an important research area](https://en.wikipedia.org/wiki/Formal_verification)
-in CS.
+style of code than OOP. Automated or formal verification
+is [an important CS research
+area](https://en.wikipedia.org/wiki/Formal_verification).
 
 ### Problem problems
 
