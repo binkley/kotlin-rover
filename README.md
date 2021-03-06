@@ -199,6 +199,22 @@ task. For the golf version of this problem, APL is ideal. However, I was
 unable to find a workable text editor on Mac OS X for the language, not to
 mention [keyboard](http://www.users.cloud9.net/~bradmcc/gif/APL_keyboard.gif).
 
+### Errors
+
+To properly diagnose errors in the input requires a "mini-compiler": treat 
+the input as a DSL (which it actually is).  For example, a real Mars Rover 
+would report to Earth any of these conditions:
+
+- Missing boundary conditions with input data line number (the first line)
+- Malformed position line in the alternating subsequent lines with input 
+  data line number
+- Malformed turn/movement instructions in the post-alternating subsequent 
+  lines with input data line number
+
+Tracking line numbers in the input implies a true DSL parser.  This is a 
+challenging problem for existing compilers of programming languages, 
+solved by most but even so sometimes with difficult corner cases.
+
 ---
 
 ## Releases
