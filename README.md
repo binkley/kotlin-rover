@@ -232,6 +232,8 @@ GitHub.
 ### The problem
 
 - [_Mars Exploration Rovers_](https://mars.nasa.gov/mer/)
+- [_Print Detailed Mars
+  Facts_](https://mars.nasa.gov/print/?print=detailedfacts)
 
 ### The "C" solution
 
