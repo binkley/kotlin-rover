@@ -4,39 +4,36 @@ import com.github.stefanbirkner.systemlambda.SystemLambda.assertNothingWrittenTo
 import com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOutNormalized
 import com.github.stefanbirkner.systemlambda.SystemLambda.withTextFromSystemIn
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
+
+private typealias EntryPoint = (Array<out String>) -> Unit
 
 internal class MainTest {
-    @Test
-    fun `should steer C-style`() = CStyle::main.assertInAndOut()
+    @ParameterizedTest
+    @MethodSource("assertions")
+    fun `should work for C-style implementation`(assertion: EntryPoint.() -> Unit) {
+        CStyle::main.assertion()
+    }
 
-    @Test
-    fun `should steer math-style`() = Mathy::main.assertInAndOut()
+    @ParameterizedTest
+    @MethodSource("assertions")
+    fun `should work for math style implementation`(assertion: EntryPoint.() -> Unit) {
+        Mathy::main.assertion()
+    }
 
-    @Test
-    fun `should do nothing on bad input C-style`() =
-        CStyle::main.assertMissingBoundary()
-
-    @Test
-    fun `should do nothing on bad input math-style`() =
-        Mathy::main.assertMissingBoundary()
-
-    @Test
-    fun `should do nothing on bad starting position C-style`() =
-        CStyle::main.assertBadStartingPosition()
-
-    @Test
-    fun `should do nothing on bad starting position math-style`() =
-        Mathy::main.assertBadStartingPosition()
+    companion object {
+        @JvmStatic
+        fun assertions() = listOf(
+            EntryPoint::assertInAndOut,
+            EntryPoint::assertMissingBoundary,
+            EntryPoint::assertBadStartingPosition,
+        )
+    }
 }
 
-private val goodInLines = lines("/input")
-private val goodExpectedOutLines = lines("/output")
-private val missingBoundaryInLines = lines("/missing-boundary")
-private val badStartingPositionInLines = lines("/bad-starting-position")
-
-private fun ((Array<out String>) -> Unit).assertInAndOut() =
+private fun EntryPoint.assertInAndOut() =
     assertNothingWrittenToSystemErr {
         tapSystemOutNormalized {
             withTextFromSystemIn(*goodInLines.toTypedArray()).execute {
@@ -45,7 +42,7 @@ private fun ((Array<out String>) -> Unit).assertInAndOut() =
         }.realLines() shouldBe goodExpectedOutLines
     }
 
-private fun ((Array<out String>) -> Unit).assertMissingBoundary() =
+private fun EntryPoint.assertMissingBoundary() =
     assertThrows<IllegalArgumentException> {
         assertNothingWrittenToSystemErr {
             tapSystemOutNormalized {
@@ -56,7 +53,7 @@ private fun ((Array<out String>) -> Unit).assertMissingBoundary() =
         }
     }.message shouldBe "Malformed input"
 
-private fun ((Array<out String>) -> Unit).assertBadStartingPosition() =
+private fun EntryPoint.assertBadStartingPosition() =
     assertThrows<IllegalArgumentException> {
         assertNothingWrittenToSystemErr {
             tapSystemOutNormalized {
@@ -66,6 +63,11 @@ private fun ((Array<out String>) -> Unit).assertBadStartingPosition() =
             }.realLines() shouldBe goodExpectedOutLines
         }
     }.message shouldBe "Malformed input: 1 N"
+
+private val goodInLines = lines("/input")
+private val goodExpectedOutLines = lines("/output")
+private val missingBoundaryInLines = lines("/missing-boundary")
+private val badStartingPositionInLines = lines("/bad-starting-position")
 
 // Ignore unreal "line" after terminal newline
 private fun String.realLines() = lines().dropLast(1)
