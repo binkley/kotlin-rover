@@ -16,8 +16,8 @@ object Mathy {
     fun main(vararg args: String) =
         inputLines().chunked(2).forEach { (startAt, instructions) ->
             // Could use fold here, but this seems more readable to me
-            var path = path(startAt)
-            instructions.forEach { path = it.from(path) }
+            var path = path(startAt.value)
+            instructions.value.forEach { path = it.from(path) }
             println(path)
         }
 }

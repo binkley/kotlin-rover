@@ -12,16 +12,18 @@ private var space = " ".toRegex()
 object CStyle {
     @JvmStatic
     fun main(vararg args: String) {
-        val lines = inputLines()
+        // TODO: Stream data, not gobble all at once
+        val linesStream: Iterable<IndexedValue<String>> = inputLines()
+        val lines = linesStream.toList()
         var i = 0
         val l = lines.size
         while (i < l) {
-            val co = lines[i]
+            val co = lines[i].value
             val coords = parseCoordinates(co)
             var x = coords[0].toInt()
             var y = coords[1].toInt()
             var d = "ENWS".indexOf(coords[2][0])
-            val mo = lines[++i]
+            val mo = lines[++i].value
             var j = 0
             val k = mo.length
 
