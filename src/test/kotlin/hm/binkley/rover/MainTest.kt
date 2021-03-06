@@ -52,7 +52,7 @@ private fun EntryPoint.assertMissingBoundary() =
                 }
             }.realLines() shouldBe goodExpectedOutLines
         }
-    }.message shouldBe "Malformed input"
+    }.message shouldBe "Line #1: Malformed input: 1 2 N"
 
 private fun EntryPoint.assertMissingPosition() =
     assertThrows<IllegalArgumentException> {
@@ -63,7 +63,7 @@ private fun EntryPoint.assertMissingPosition() =
                 }
             }.realLines() shouldBe goodExpectedOutLines
         }
-    }.message shouldBe "Malformed input"
+    }.message shouldBe "Line #2: Malformed input: LMLMLMLMM"
 
 private fun EntryPoint.assertBadStartingPosition() =
     assertThrows<IllegalArgumentException> {
@@ -74,7 +74,7 @@ private fun EntryPoint.assertBadStartingPosition() =
                 }
             }.realLines() shouldBe goodExpectedOutLines
         }
-    }.message shouldBe "Malformed input: 1 N"
+    }.message shouldBe "Line #2: Malformed input: 1 N"
 
 private val goodInLines = lines("/input")
 private val goodExpectedOutLines = lines("/output")

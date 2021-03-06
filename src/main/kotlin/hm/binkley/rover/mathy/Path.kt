@@ -1,8 +1,6 @@
 package hm.binkley.rover.mathy
 
-import lombok.Generated
-
-private val space = " ".toRegex()
+import hm.binkley.rover.space
 
 data class Path(
     private val facing: Rotation,
@@ -16,14 +14,13 @@ data class Path(
     override fun toString() = "%d %d %s".format(at.x, at.y, facing)
 }
 
-@Generated // TODO: Remove this once use cases are fully solid
-fun path(line: String): Path {
-    val q = line.split(space)
+fun path(line: IndexedValue<String>): Path {
+    val q = line.value.split(space)
     when (q.size) {
         3 -> {
             val (x, y, rot) = q
             return Path(rotate(rot), at(x.toInt(), y.toInt()))
         }
-        else -> throw IllegalArgumentException("Malformed input: $line")
+        else -> throw IllegalArgumentException("Line #${line.index}: Malformed input: ${line.value}")
     }
 }

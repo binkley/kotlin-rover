@@ -1,9 +1,17 @@
 package hm.binkley.rover
 
-fun inputLines(): Iterable<IndexedValue<String>> {
-    val lines = generateSequence(::readLine).toList()
-
-    // TODO: Skip grid size - what to do with it?
-    require(1 == lines.size % 2) { "Malformed input" }
-    return lines.drop(1).withIndex()
+/**
+ * Creates a stream of input lines indexed by input line number.
+ *
+ * The "index" property is suitable for reporting input line numbers
+ */
+internal fun inputLines(): Iterable<IndexedValue<String>> {
+    return generateSequence(::readLine)
+        .toList()
+        .withIndex()
+        .map {
+            IndexedValue(it.index + 1, it.value)
+        }
 }
+
+internal val space = " ".toRegex()

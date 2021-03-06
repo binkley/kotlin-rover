@@ -1,8 +1,7 @@
 package hm.binkley.rover
 
+import hm.binkley.rover.mathy.consumeBoundaries
 import java.lang.System.out
-
-private var space = " ".toRegex()
 
 /**
  * `CStyleMain` is a very "C"-like approach to the Rover problem.
@@ -13,17 +12,19 @@ object CStyle {
     @JvmStatic
     fun main(vararg args: String) {
         // TODO: Stream data, not gobble all at once
-        val linesStream: Iterable<IndexedValue<String>> = inputLines()
-        val lines = linesStream.toList()
+        val indexedLines = inputLines().toMutableList()
+
+        consumeBoundaries(indexedLines.removeAt(0))
+
         var i = 0
-        val l = lines.size
+        val l = indexedLines.size
         while (i < l) {
-            val co = lines[i].value
-            val coords = parseCoordinates(co)
+            val co = indexedLines[i]
+            val coords = parseStartingPosition(co)
             var x = coords[0].toInt()
             var y = coords[1].toInt()
             var d = "ENWS".indexOf(coords[2][0])
-            val mo = lines[++i].value
+            val mo = indexedLines[++i].value
             var j = 0
             val k = mo.length
 
@@ -46,10 +47,10 @@ object CStyle {
     }
 }
 
-private fun parseCoordinates(line: String): List<String> {
-    val coords = space.split(line)
+private fun parseStartingPosition(indexedLine: IndexedValue<String>): List<String> {
+    val coords = space.split(indexedLine.value)
     return when (coords.size) {
         3 -> coords
-        else -> throw IllegalArgumentException("Malformed input: $line")
+        else -> throw IllegalArgumentException("Line #${indexedLine.index}: Malformed input: ${indexedLine.value}")
     }
 }
