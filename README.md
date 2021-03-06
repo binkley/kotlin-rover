@@ -14,6 +14,8 @@ in Kotlin. This code is a "finger exercise" written for pleasure.
 width="20%"/>
 </a>
 
+**Note**: _This is no longer a problem offered by ThoughtWorks._
+
 [![build](https://github.com/binkley/kotlin-rover/workflows/build/badge.svg)](https://github.com/binkley/kotlin-rover/actions)
 [![issues](https://img.shields.io/github/issues/binkley/kotlin-rover.svg)](https://github.com/binkley/kotlin-rover/issues/)
 [![Public Domain](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](http://unlicense.org/)
