@@ -3,9 +3,9 @@ package hm.binkley.rover.mathy
 import hm.binkley.rover.space
 
 data class Program(
-    val maxX: Int,
-    val maxY: Int,
-    val line: IndexedValue<String>,
+    private val maxX: Int,
+    private val maxY: Int,
+    private val line: IndexedValue<String>,
 ) {
     fun check(at: Position) {
         if (maxX < at.x) throw IllegalArgumentException("Line #${line.index}: Malformed input: ${line.value}")
