@@ -27,6 +27,7 @@ internal class MainTest {
         @JvmStatic
         fun assertions() = listOf(
             EntryPoint::assertInAndOut,
+            EntryPoint::assertStaysInPlace,
             EntryPoint::assertMissingBoundary,
             EntryPoint::assertMissingPosition,
             EntryPoint::assertBadStartingPosition,

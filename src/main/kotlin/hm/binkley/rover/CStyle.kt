@@ -43,6 +43,12 @@ object CStyle {
                         2 -> --x
                         3 -> --y
                     }
+                    'B' -> when (d % 4) {
+                        0 -> --x
+                        1 -> --y
+                        2 -> ++x
+                        3 -> ++y
+                    }
                 }
 
                 if (maxX < x) throw IllegalArgumentException("Line #${mo.index}: Malformed input: $ins")
