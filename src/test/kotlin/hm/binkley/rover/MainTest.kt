@@ -30,6 +30,8 @@ internal class MainTest {
             EntryPoint::assertMissingBoundary,
             EntryPoint::assertMissingPosition,
             EntryPoint::assertBadStartingPosition,
+            EntryPoint::assertStartingPastBoundary,
+            EntryPoint::assertMovingPastBoundary,
         )
     }
 }
@@ -50,7 +52,7 @@ private fun EntryPoint.assertMissingBoundary() =
                 withTextFromSystemIn(*missingBoundaryInLines.toTypedArray()).execute {
                     this(emptyArray())
                 }
-            }.realLines() shouldBe goodExpectedOutLines
+            }
         }
     }.message shouldBe "Line #1: Malformed input: 1 2 N"
 
@@ -61,7 +63,7 @@ private fun EntryPoint.assertMissingPosition() =
                 withTextFromSystemIn(*missingPositionInLines.toTypedArray()).execute {
                     this(emptyArray())
                 }
-            }.realLines() shouldBe goodExpectedOutLines
+            }
         }
     }.message shouldBe "Line #2: Malformed input: LMLMLMLMM"
 
@@ -72,15 +74,39 @@ private fun EntryPoint.assertBadStartingPosition() =
                 withTextFromSystemIn(*badStartingPositionInLines.toTypedArray()).execute {
                     this(emptyArray())
                 }
-            }.realLines() shouldBe goodExpectedOutLines
+            }
         }
     }.message shouldBe "Line #2: Malformed input: 1 N"
+
+private fun EntryPoint.assertStartingPastBoundary() =
+    assertThrows<IllegalArgumentException> {
+        assertNothingWrittenToSystemErr {
+            tapSystemOutNormalized {
+                withTextFromSystemIn(*startingPastBoundaryInLines.toTypedArray()).execute {
+                    this(emptyArray())
+                }
+            }
+        }
+    }.message shouldBe "Line #2: Malformed input: 6 6 N"
+
+private fun EntryPoint.assertMovingPastBoundary() =
+    assertThrows<IllegalArgumentException> {
+        assertNothingWrittenToSystemErr {
+            tapSystemOutNormalized {
+                withTextFromSystemIn(*movingPastBoundaryInLines.toTypedArray()).execute {
+                    this(emptyArray())
+                }
+            }
+        }
+    }.message shouldBe "Line #5: Malformed input: MMRMMRMRRM"
 
 private val goodInLines = lines("/input")
 private val goodExpectedOutLines = lines("/output")
 private val missingBoundaryInLines = lines("/missing-boundary")
 private val missingPositionInLines = lines("/missing-position")
 private val badStartingPositionInLines = lines("/bad-starting-position")
+private val startingPastBoundaryInLines = lines("/starting-past-boundary")
+private val movingPastBoundaryInLines = lines("/moving-past-boundary")
 
 // Ignore unreal "line" after terminal newline
 private fun String.realLines() = lines().dropLast(1)

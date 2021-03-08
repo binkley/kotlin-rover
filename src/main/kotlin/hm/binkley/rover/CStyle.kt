@@ -1,6 +1,5 @@
 package hm.binkley.rover
 
-import hm.binkley.rover.mathy.consumeBoundaries
 import java.lang.System.out
 
 /**
@@ -14,22 +13,28 @@ object CStyle {
         // TODO: Stream data, not gobble all at once
         val indexedLines = inputLines().toMutableList()
 
-        consumeBoundaries(indexedLines.removeAt(0))
+        val (maxX, maxY) = parseBoundaries(indexedLines[0])
 
-        var i = 0
+        var i = 1
         val l = indexedLines.size
         while (i < l) {
             val co = indexedLines[i]
+            val mo = indexedLines[++i]
+
             val coords = parseStartingPosition(co)
             var x = coords[0].toInt()
             var y = coords[1].toInt()
             var d = "ENWS".indexOf(coords[2][0])
-            val mo = indexedLines[++i].value
+
+            if (maxX < x) throw IllegalArgumentException("Line #${co.index}: Malformed input: ${co.value}")
+            if (maxY < y) throw IllegalArgumentException("Line #${co.index}: Malformed input: ${co.value}")
+
+            val ins = mo.value
             var j = 0
-            val k = mo.length
+            val k = ins.length
 
             while (j < k) {
-                when (mo[j]) {
+                when (ins[j]) {
                     'L' -> d += 1
                     'R' -> d += 3
                     'M' -> when (d % 4) {
@@ -39,11 +44,27 @@ object CStyle {
                         3 -> --y
                     }
                 }
+
+                if (maxX < x) throw IllegalArgumentException("Line #${mo.index}: Malformed input: $ins")
+                if (maxY < y) throw IllegalArgumentException("Line #${mo.index}: Malformed input: $ins")
+
                 ++j
             }
+
             out.printf("%d %d %c%n", x, y, "ENWS"[d % 4])
             ++i
         }
+    }
+}
+
+private fun parseBoundaries(indexedLine: IndexedValue<String>): List<Int> {
+    val boundaries = space.split(indexedLine.value)
+    return when (boundaries.size) {
+        2 -> {
+            val (x, y) = boundaries
+            listOf(x.toInt(), y.toInt())
+        }
+        else -> throw IllegalArgumentException("Line #${indexedLine.index}: Malformed input: ${indexedLine.value}")
     }
 }
 
