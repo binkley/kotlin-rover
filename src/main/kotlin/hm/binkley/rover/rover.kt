@@ -1,13 +1,12 @@
 package hm.binkley.rover
 
 /**
- * Creates a stream of input lines indexed by input line number.
+ * Creates a lazy stream of input lines indexed by input line number.
  *
- * The "index" property is suitable for reporting input line numbers
+ * The "index" property is suitable for reporting input line numbers (1-based)
  */
-internal fun inputLines(): Iterable<IndexedValue<String>> =
+internal fun inputLines(): Sequence<IndexedValue<String>> =
     generateSequence(::readLine)
-        .toList()
         .withIndex()
         .map {
             // Present 1-based indexing for line numbers, not 0-based
