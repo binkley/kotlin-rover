@@ -33,7 +33,8 @@ internal class MainTest {
             EntryPoint::assertBadStartingPosition,
             EntryPoint::assertStartingPastXBoundary,
             EntryPoint::assertStartingPastYBoundary,
-            EntryPoint::assertMovingPastBoundary,
+            EntryPoint::assertMovingPastXBoundary,
+            EntryPoint::assertMovingPastYBoundary,
         )
     }
 }
@@ -84,10 +85,16 @@ private fun EntryPoint.assertStartingPastYBoundary() =
         "Line #2: Malformed input: 1 6 N"
     )
 
-private fun EntryPoint.assertMovingPastBoundary() =
+private fun EntryPoint.assertMovingPastXBoundary() =
     assertMalformedInput(
-        movingPastBoundaryInLines,
-        "Line #5: Malformed input: MMRMMRMRRM"
+        movingPastXBoundaryInLines,
+        "Line #3: Malformed input: M"
+    )
+
+private fun EntryPoint.assertMovingPastYBoundary() =
+    assertMalformedInput(
+        movingPastYBoundaryInLines,
+        "Line #3: Malformed input: M"
     )
 
 private fun EntryPoint.assertMalformedInput(
@@ -108,7 +115,8 @@ private val missingPositionInLines = lines("/missing-position")
 private val badStartingPositionInLines = lines("/bad-starting-position")
 private val startingPastXBoundaryInLines = lines("/starting-past-x-boundary")
 private val startingPastYBoundaryInLines = lines("/starting-past-y-boundary")
-private val movingPastBoundaryInLines = lines("/moving-past-boundary")
+private val movingPastXBoundaryInLines = lines("/moving-past-x-boundary")
+private val movingPastYBoundaryInLines = lines("/moving-past-Y-boundary")
 
 // Ignore unreal "line" after terminal newline
 // TODO: Check last char is terminating newline
