@@ -47,70 +47,55 @@ private fun EntryPoint.assertInAndOut() =
     }
 
 private fun EntryPoint.assertMissingBoundary() =
-    assertThrows<IllegalArgumentException> {
-        assertNothingWrittenToSystemErr {
-            tapSystemOutNormalized {
-                withTextFromSystemIn(*missingBoundaryInLines.toTypedArray()).execute {
-                    this(emptyArray())
-                }
-            }
-        }
-    }.message shouldBe "Line #1: Malformed input: 1 2 N"
+    assertMalformedInput(
+        missingBoundaryInLines,
+        "Line #1: Malformed input: 1 2 N"
+    )
 
 private fun EntryPoint.assertMissingPosition() =
-    assertThrows<IllegalArgumentException> {
-        assertNothingWrittenToSystemErr {
-            tapSystemOutNormalized {
-                withTextFromSystemIn(*missingPositionInLines.toTypedArray()).execute {
-                    this(emptyArray())
-                }
-            }
-        }
-    }.message shouldBe "Line #2: Malformed input: LMLMLMLMM"
+    assertMalformedInput(
+        missingPositionInLines,
+        "Line #2: Malformed input: LMLMLMLMM"
+    )
 
 private fun EntryPoint.assertBadStartingPosition() =
-    assertThrows<IllegalArgumentException> {
-        assertNothingWrittenToSystemErr {
-            tapSystemOutNormalized {
-                withTextFromSystemIn(*badStartingPositionInLines.toTypedArray()).execute {
-                    this(emptyArray())
-                }
-            }
-        }
-    }.message shouldBe "Line #2: Malformed input: 1 N"
+    assertMalformedInput(
+        badStartingPositionInLines,
+        "Line #2: Malformed input: 1 N"
+    )
 
 private fun EntryPoint.assertStartingPastXBoundary() =
-    assertThrows<IllegalArgumentException> {
-        assertNothingWrittenToSystemErr {
-            tapSystemOutNormalized {
-                withTextFromSystemIn(*startingPastXBoundaryInLines.toTypedArray()).execute {
-                    this(emptyArray())
-                }
-            }
-        }
-    }.message shouldBe "Line #2: Malformed input: 6 2 N"
+    assertMalformedInput(
+        startingPastXBoundaryInLines,
+        "Line #2: Malformed input: 6 2 N"
+    )
 
 private fun EntryPoint.assertStartingPastYBoundary() =
-    assertThrows<IllegalArgumentException> {
-        assertNothingWrittenToSystemErr {
-            tapSystemOutNormalized {
-                withTextFromSystemIn(*startingPastYBoundaryInLines.toTypedArray()).execute {
-                    this(emptyArray())
-                }
-            }
-        }
-    }.message shouldBe "Line #2: Malformed input: 1 6 N"
+    assertMalformedInput(
+        startingPastYBoundaryInLines,
+        "Line #2: Malformed input: 1 6 N"
+    )
 
 private fun EntryPoint.assertMovingPastBoundary() =
+    assertMalformedInput(
+        movingPastBoundaryInLines,
+        "Line #5: Malformed input: MMRMMRMRRM"
+    )
+
+private fun EntryPoint.assertMalformedInput(
+    inputLines: List<String>,
+    expectedExceptionMessage: String,
+) {
     assertThrows<IllegalArgumentException> {
         assertNothingWrittenToSystemErr {
             tapSystemOutNormalized {
-                withTextFromSystemIn(*movingPastBoundaryInLines.toTypedArray()).execute {
+                withTextFromSystemIn(*inputLines.toTypedArray()).execute {
                     this(emptyArray())
                 }
             }
         }
-    }.message shouldBe "Line #5: Malformed input: MMRMMRMRRM"
+    }.message shouldBe expectedExceptionMessage
+}
 
 private val goodInLines = lines("/input")
 private val goodExpectedOutLines = lines("/output")
