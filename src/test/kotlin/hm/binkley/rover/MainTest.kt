@@ -37,14 +37,21 @@ internal class MainTest {
     }
 }
 
-private fun EntryPoint.assertInAndOut() =
+private fun EntryPoint.runInAndOutAndNoErr(
+    inputLines: List<String>,
+) = tapSystemOutNormalized {
     assertNothingWrittenToSystemErr {
-        tapSystemOutNormalized {
-            withTextFromSystemIn(*goodInLines.toTypedArray()).execute {
-                this(emptyArray())
-            }
-        }.realLines() shouldBe goodExpectedOutLines
+        withTextFromSystemIn(*inputLines.toTypedArray()).execute {
+            this(emptyArray())
+        }
     }
+}.realLines()
+
+private fun EntryPoint.assertInAndOut() =
+    runInAndOutAndNoErr(goodInLines) shouldBe goodExpectedOutLines
+
+private fun EntryPoint.assertStaysInPlace() =
+    runInAndOutAndNoErr(staysInPlaceInLines) shouldBe staysInPlaceOutLines
 
 private fun EntryPoint.assertMissingBoundary() =
     assertMalformedInput(
@@ -87,18 +94,14 @@ private fun EntryPoint.assertMalformedInput(
     expectedExceptionMessage: String,
 ) {
     assertThrows<IllegalArgumentException> {
-        assertNothingWrittenToSystemErr {
-            tapSystemOutNormalized {
-                withTextFromSystemIn(*inputLines.toTypedArray()).execute {
-                    this(emptyArray())
-                }
-            }
-        }
+        runInAndOutAndNoErr(inputLines)
     }.message shouldBe expectedExceptionMessage
 }
 
 private val goodInLines = lines("/input")
 private val goodExpectedOutLines = lines("/output")
+private val staysInPlaceInLines = lines("/stays-in-place-input")
+private val staysInPlaceOutLines = lines("/stays-in-place-output")
 private val missingBoundaryInLines = lines("/missing-boundary")
 private val missingPositionInLines = lines("/missing-position")
 private val badStartingPositionInLines = lines("/bad-starting-position")
@@ -107,6 +110,7 @@ private val startingPastYBoundaryInLines = lines("/starting-past-y-boundary")
 private val movingPastBoundaryInLines = lines("/moving-past-boundary")
 
 // Ignore unreal "line" after terminal newline
+// TODO: Check last char is terminating newline
 private fun String.realLines() = lines().dropLast(1)
 
 private fun lines(resourcePath: String) =
