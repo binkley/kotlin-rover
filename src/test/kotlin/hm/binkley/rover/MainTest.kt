@@ -30,7 +30,8 @@ internal class MainTest {
             EntryPoint::assertMissingBoundary,
             EntryPoint::assertMissingPosition,
             EntryPoint::assertBadStartingPosition,
-            EntryPoint::assertStartingPastBoundary,
+            EntryPoint::assertStartingPastXBoundary,
+            EntryPoint::assertStartingPastYBoundary,
             EntryPoint::assertMovingPastBoundary,
         )
     }
@@ -78,16 +79,27 @@ private fun EntryPoint.assertBadStartingPosition() =
         }
     }.message shouldBe "Line #2: Malformed input: 1 N"
 
-private fun EntryPoint.assertStartingPastBoundary() =
+private fun EntryPoint.assertStartingPastXBoundary() =
     assertThrows<IllegalArgumentException> {
         assertNothingWrittenToSystemErr {
             tapSystemOutNormalized {
-                withTextFromSystemIn(*startingPastBoundaryInLines.toTypedArray()).execute {
+                withTextFromSystemIn(*startingPastXBoundaryInLines.toTypedArray()).execute {
                     this(emptyArray())
                 }
             }
         }
-    }.message shouldBe "Line #2: Malformed input: 6 6 N"
+    }.message shouldBe "Line #2: Malformed input: 6 2 N"
+
+private fun EntryPoint.assertStartingPastYBoundary() =
+    assertThrows<IllegalArgumentException> {
+        assertNothingWrittenToSystemErr {
+            tapSystemOutNormalized {
+                withTextFromSystemIn(*startingPastYBoundaryInLines.toTypedArray()).execute {
+                    this(emptyArray())
+                }
+            }
+        }
+    }.message shouldBe "Line #2: Malformed input: 1 6 N"
 
 private fun EntryPoint.assertMovingPastBoundary() =
     assertThrows<IllegalArgumentException> {
@@ -105,7 +117,8 @@ private val goodExpectedOutLines = lines("/output")
 private val missingBoundaryInLines = lines("/missing-boundary")
 private val missingPositionInLines = lines("/missing-position")
 private val badStartingPositionInLines = lines("/bad-starting-position")
-private val startingPastBoundaryInLines = lines("/starting-past-boundary")
+private val startingPastXBoundaryInLines = lines("/starting-past-x-boundary")
+private val startingPastYBoundaryInLines = lines("/starting-past-y-boundary")
 private val movingPastBoundaryInLines = lines("/moving-past-boundary")
 
 // Ignore unreal "line" after terminal newline
