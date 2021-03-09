@@ -26,12 +26,15 @@ object Mathy {
     }
 }
 
-private fun Char.from(path: Path, line: IndexedValue<String>) =
-    path.next(readInstruction(line), line)
+// TODO: These functions are awkward -- what should "this" be?
+// TODO: Hide "Char" lower in callstack as an implementation detail
 
-private fun Char.readInstruction(line: IndexedValue<String>) =
+private fun Char.from(path: Path, line: IndexedValue<String>) =
+    path.next(line.readInstruction(this), line)
+
+private fun IndexedValue<String>.readInstruction(ins: Char) =
     try {
-        follow(toString())
+        follow(ins.toString())
     } catch (e: IllegalArgumentException) {
-        throw IllegalArgumentException("Line #${line.index}: Malformed input: ${line.value}")
+        throw IllegalArgumentException("Line #$index: Malformed input: $value")
     }
