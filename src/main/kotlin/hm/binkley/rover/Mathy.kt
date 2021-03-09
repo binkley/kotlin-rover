@@ -25,7 +25,7 @@ object Mathy {
             var position = startAt.toPosition()
             val path = instructions.toPath()
             path.forEach { position = it(position) }
-            println(position)
+            println("${position.x} ${position.y} ${position.facing}")
         }
     }
 }
