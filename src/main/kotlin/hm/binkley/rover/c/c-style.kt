@@ -22,6 +22,7 @@ fun runLittleRoverRun(input: Sequence<IndexedValue<String>>) {
 
         if (maxX < x) throw IllegalArgumentException("Line #${co.index}: Malformed input: ${co.value}")
         if (maxY < y) throw IllegalArgumentException("Line #${co.index}: Malformed input: ${co.value}")
+        if (-1 == d) throw IllegalArgumentException("Line #${co.index}: Malformed input: ${co.value}")
 
         val ins = mo.value
         var j = 0

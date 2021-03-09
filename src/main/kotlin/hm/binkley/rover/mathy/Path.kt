@@ -26,7 +26,7 @@ fun IndexedValue<String>.toPath(program: Program): Path {
         3 -> {
             val (x, y, rot) = q
             return Path(
-                rotate(rot),
+                readRotation(rot),
                 at(x.toInt(), y.toInt()),
                 program.next(this),
             )
@@ -34,3 +34,10 @@ fun IndexedValue<String>.toPath(program: Program): Path {
         else -> throw IllegalArgumentException("Line #$index: Malformed input: $value")
     }
 }
+
+private fun IndexedValue<String>.readRotation(rot: String) =
+    try {
+        rotate(rot)
+    } catch (e: IllegalArgumentException) {
+        throw IllegalArgumentException("Line #$index: Malformed input: $value")
+    }
