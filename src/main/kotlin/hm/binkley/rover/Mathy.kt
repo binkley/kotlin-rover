@@ -1,9 +1,10 @@
 package hm.binkley.rover
 
-import hm.binkley.rover.mathy.Path
-import hm.binkley.rover.mathy.follow
+import hm.binkley.rover.mathy.inputLines
+import hm.binkley.rover.mathy.invoke
 import hm.binkley.rover.mathy.toBoundary
 import hm.binkley.rover.mathy.toPath
+import hm.binkley.rover.mathy.toPosition
 
 /**
  * `MathMain` is a more OOP-y approach to the Rover problem based on
@@ -15,26 +16,16 @@ import hm.binkley.rover.mathy.toPath
 object Mathy {
     @JvmStatic
     fun main(vararg args: String) {
+        // TODO: Stream, not convert to list
         val lines = inputLines().toMutableList()
-        val boundary = lines.removeAt(0).toBoundary()
+        val firstLine = lines.removeAt(0)
+        /* val boundary = */ firstLine.toBoundary()
         lines.chunked(2).forEach { (startAt, instructions) ->
             // Could use fold here, but this seems more readable to me
-            var path = startAt.toPath(boundary)
-            instructions.value.forEach { path = it.from(path, instructions) }
-            println(path)
+            var position = startAt.toPosition()
+            val path = instructions.toPath()
+            path.forEach { position = it(position) }
+            println(position)
         }
     }
 }
-
-// TODO: These functions are awkward -- what should "this" be?
-// TODO: Hide "Char" lower in callstack as an implementation detail
-
-private fun Char.from(path: Path, line: IndexedValue<String>) =
-    path.next(line.readInstruction(this), line)
-
-private fun IndexedValue<String>.readInstruction(ins: Char) =
-    try {
-        follow(ins.toString())
-    } catch (e: IllegalArgumentException) {
-        throw IllegalArgumentException("Line #$index: Malformed input: $value")
-    }

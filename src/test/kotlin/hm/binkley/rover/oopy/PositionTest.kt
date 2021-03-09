@@ -1,9 +1,9 @@
-package hm.binkley.rover.mathy
+package hm.binkley.rover.oopy
 
-import hm.binkley.rover.mathy.Rotation.E
-import hm.binkley.rover.mathy.Rotation.N
-import hm.binkley.rover.mathy.Rotation.S
-import hm.binkley.rover.mathy.Rotation.W
+import hm.binkley.rover.oopy.Rotation.E
+import hm.binkley.rover.oopy.Rotation.N
+import hm.binkley.rover.oopy.Rotation.S
+import hm.binkley.rover.oopy.Rotation.W
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 

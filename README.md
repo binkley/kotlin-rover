@@ -159,7 +159,7 @@ right).
 
 I presented these
 solutions&mdash;["C" style](./src/main/kotlin/hm/binkley/rover/CStyle.kt) and
-["math" style](./src/main/kotlin/hm/binkley/rover/Mathy.kt)&mdash;to
+["math" style](src/main/kotlin/hm/binkley/rover/Oopy.kt)&mdash;to
 coworkers, both of which surprised them. I expected that
 [matrix form](https://en.wikipedia.org/wiki/Rotation_matrix) of
 [the circle group](https://en.wikipedia.org/wiki/Circle_group) is unfamiliar
