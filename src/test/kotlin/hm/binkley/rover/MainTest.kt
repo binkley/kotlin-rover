@@ -4,7 +4,6 @@ import com.github.stefanbirkner.systemlambda.SystemLambda.assertNothingWrittenTo
 import com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOutNormalized
 import com.github.stefanbirkner.systemlambda.SystemLambda.withTextFromSystemIn
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
@@ -24,7 +23,6 @@ internal class MainTest {
         Oopy::main.assertion()
     }
 
-    @Disabled("TODO: Handle boundary")
     @ParameterizedTest
     @MethodSource("assertions")
     fun `should work for math style implementation`(assertion: EntryPoint.() -> Unit) {

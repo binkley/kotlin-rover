@@ -14,3 +14,7 @@ fun InputLine.toBoundary(): Boundary {
         else -> invalid()
     }
 }
+
+fun Boundary.contains(x: Distance, y: Distance, invalid: () -> Nothing) {
+    if (this.x < x || this.y < y) invalid()
+}

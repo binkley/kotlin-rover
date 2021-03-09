@@ -13,15 +13,21 @@ fun String.toInstruction(invalid: () -> Nothing) = try {
     invalid()
 }
 
-operator fun Instruction.invoke(position: Position): Position {
+operator fun Instruction.invoke(
+    position: Position,
+    boundary: Boundary,
+    invalid: () -> Nothing,
+): Position {
+    // TODO: Combine rotating and scaling into single op or fun
     val newFacing = rotation * position.facing
-    val scaling = rotation.scaling
-    val (addX, addY) = scaling * newFacing
-    return Position(
-        position.x + addX.toDistance(),
-        position.y + addY.toDistance(),
-        newFacing
-    )
+    val (addX, addY) = rotation.scaling * newFacing
+    val newX = position.x + addX.toDistance()
+    val newY = position.y + addY.toDistance()
+
+    // TODO: Too intimate: Put this check in one place only
+    boundary.contains(newX, newY) { invalid() }
+
+    return Position(newX, newY, newFacing)
 }
 
 private operator fun Int.times(direction: Direction) =

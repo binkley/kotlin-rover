@@ -4,16 +4,16 @@ import hm.binkley.rover.space
 
 data class Position(val x: Distance, val y: Distance, val facing: Direction)
 
-fun InputLine.toPosition(): Position {
+fun InputLine.toPosition(boundary: Boundary): Position {
     val lexed = space.split(data)
-    return when (lexed.size) {
-        3 -> Position(
-            lexed[0].toDistance { invalid() },
-            lexed[1].toDistance { invalid() },
-            lexed[2].toDirection { invalid() },
-        )
-        else -> invalid()
-    }
-}
+    if (lexed.size != 3) invalid()
+    val x = lexed[0].toDistance { invalid() }
+    val y = lexed[1].toDistance { invalid() }
 
-fun Position.execute(instruction: Instruction) = instruction(this)
+    boundary.contains(x, y) { invalid() }
+
+    return Position(
+        x, y,
+        facing = lexed[2].toDirection { invalid() },
+    )
+}

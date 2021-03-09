@@ -1,6 +1,7 @@
 package hm.binkley.rover
 
 import hm.binkley.rover.mathy.inputLines
+import hm.binkley.rover.mathy.invalid
 import hm.binkley.rover.mathy.invoke
 import hm.binkley.rover.mathy.toBoundary
 import hm.binkley.rover.mathy.toPath
@@ -19,12 +20,16 @@ object Mathy {
         // TODO: Stream, not convert to list
         val lines = inputLines().toMutableList()
         val firstLine = lines.removeAt(0)
-        /* val boundary = */ firstLine.toBoundary()
+        val boundary = firstLine.toBoundary()
         lines.chunked(2).forEach { (startAt, instructions) ->
             // Could use fold here, but this seems more readable to me
-            var position = startAt.toPosition()
+            var position = startAt.toPosition(boundary)
             val path = instructions.toPath()
-            path.forEach { position = it(position) }
+            path.forEach {
+                position = it(position, boundary) {
+                    instructions.invalid()
+                }
+            }
             println("${position.x} ${position.y} ${position.facing}")
         }
     }
