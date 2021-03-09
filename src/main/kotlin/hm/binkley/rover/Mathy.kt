@@ -27,4 +27,11 @@ object Mathy {
 }
 
 private fun Char.from(path: Path, line: IndexedValue<String>) =
-    path.next(follow(toString()), line)
+    path.next(readInstruction(line), line)
+
+private fun Char.readInstruction(line: IndexedValue<String>) =
+    try {
+        follow(toString())
+    } catch (e: IllegalArgumentException) {
+        throw IllegalArgumentException("Line #${line.index}: Malformed input: ${line.value}")
+    }

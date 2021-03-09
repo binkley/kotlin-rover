@@ -31,6 +31,7 @@ internal class MainTest {
             EntryPoint::assertMissingBoundary,
             EntryPoint::assertMissingPosition,
             EntryPoint::assertBadStartingPosition,
+            EntryPoint::assertBadInstruction,
             EntryPoint::assertStartingPastXBoundary,
             EntryPoint::assertStartingPastYBoundary,
             EntryPoint::assertMovingPastXBoundary,
@@ -73,6 +74,12 @@ private fun EntryPoint.assertBadStartingPosition() =
         "Line #2: Malformed input: 1 N"
     )
 
+private fun EntryPoint.assertBadInstruction() =
+    assertMalformedInput(
+        badInstructionInLines,
+        "Line #3: Malformed input: Q"
+    )
+
 private fun EntryPoint.assertStartingPastXBoundary() =
     assertMalformedInput(
         startingPastXBoundaryInLines,
@@ -113,6 +120,7 @@ private val staysInPlaceOutLines = lines("/stays-in-place-output")
 private val missingBoundaryInLines = lines("/missing-boundary")
 private val missingPositionInLines = lines("/missing-position")
 private val badStartingPositionInLines = lines("/bad-starting-position")
+private val badInstructionInLines = lines("/bad-instruction")
 private val startingPastXBoundaryInLines = lines("/starting-past-x-boundary")
 private val startingPastYBoundaryInLines = lines("/starting-past-y-boundary")
 private val movingPastXBoundaryInLines = lines("/moving-past-x-boundary")

@@ -43,6 +43,7 @@ fun runLittleRoverRun(input: Sequence<IndexedValue<String>>) {
                     2 -> ++x
                     3 -> ++y
                 }
+                else -> throw IllegalArgumentException("Line #${mo.index}: Malformed input: $ins")
             }
 
             if (maxX < x) throw IllegalArgumentException("Line #${mo.index}: Malformed input: $ins")
