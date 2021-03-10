@@ -16,12 +16,12 @@ val W = Direction(-1, 0)
 val S = Direction(0, -1)
 val E = Direction(1, 0)
 
-fun String.toDirection(invalid: () -> Nothing) = when (this) {
+fun String.toDirection() = when (this) {
     "N" -> N
     "W" -> W
     "S" -> S
     "E" -> E
-    else -> invalid()
+    else -> throw MalformedInputException("Not a direction: $this")
 }
 
 operator fun Rotation.times(direction: Direction): Direction {

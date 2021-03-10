@@ -7,16 +7,15 @@ enum class Instruction(val rotation: Rotation) {
     R(Rotation(0, 1, -1, 0)),
 }
 
-fun String.toInstruction(invalid: () -> Nothing) = try {
+fun String.toInstruction() = try {
     Instruction.valueOf(this)
 } catch (e: IllegalArgumentException) {
-    invalid()
+    throw MalformedInputException("Not an instruction: $this", e)
 }
 
 operator fun Instruction.invoke(
     position: Position,
     boundary: Boundary,
-    invalid: () -> Nothing,
 ): Position {
     // TODO: Combine rotating and scaling into single op or fun
     val newFacing = rotation * position.facing
@@ -25,7 +24,7 @@ operator fun Instruction.invoke(
     val newY = position.y + addY.toDistance()
 
     // TODO: Too intimate: Put this check in one place only
-    boundary.contains(newX, newY) { invalid() }
+    boundary.contains(newX, newY)
 
     return Position(newX, newY, newFacing)
 }

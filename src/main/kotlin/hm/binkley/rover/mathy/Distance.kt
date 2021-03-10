@@ -6,10 +6,10 @@ inline class Distance(val d: Int) {
     override fun toString() = d.toString()
 }
 
-fun String.toDistance(invalid: () -> Nothing) = try {
+fun String.toDistance() = try {
     Distance(toInt())
 } catch (e: NumberFormatException) {
-    invalid()
+    throw MalformedInputException("Not a distance: $this", e)
 }
 
 fun Int.toDistance() = Distance(this)

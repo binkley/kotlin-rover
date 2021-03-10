@@ -8,13 +8,14 @@ fun InputLine.toBoundary(): Boundary {
     val lexed = space.split(data)
     return when (lexed.size) {
         2 -> Boundary(
-            lexed[0].toDistance { invalid() },
-            lexed[1].toDistance { invalid() },
+            lexed[0].toDistance(),
+            lexed[1].toDistance(),
         )
-        else -> invalid()
+        else -> throw MalformedInputException("Not a boundary: $data")
     }
 }
 
-fun Boundary.contains(x: Distance, y: Distance, invalid: () -> Nothing) {
-    if (this.x < x || this.y < y) invalid()
+fun Boundary.contains(x: Distance, y: Distance) {
+    if (this.x < x || this.y < y)
+        throw MalformedInputException("Out of bounds: $this: ($x, $y)")
 }

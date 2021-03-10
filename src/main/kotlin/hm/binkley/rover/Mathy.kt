@@ -1,5 +1,11 @@
 package hm.binkley.rover
 
+import hm.binkley.rover.mathy.Boundary
+import hm.binkley.rover.mathy.InputLine
+import hm.binkley.rover.mathy.Instruction
+import hm.binkley.rover.mathy.MalformedInputException
+import hm.binkley.rover.mathy.Path
+import hm.binkley.rover.mathy.Position
 import hm.binkley.rover.mathy.inputLines
 import hm.binkley.rover.mathy.invalid
 import hm.binkley.rover.mathy.invoke
@@ -19,18 +25,50 @@ object Mathy {
     fun main(vararg args: String) {
         // TODO: Stream, not convert to list
         val lines = inputLines().toMutableList()
-        val firstLine = lines.removeAt(0)
-        val boundary = firstLine.toBoundary()
+        val boundary = readBoundary(lines)
         lines.chunked(2).forEach { (startAt, instructions) ->
             // Could use fold here, but this seems more readable to me
-            var position = startAt.toPosition(boundary)
-            val path = instructions.toPath()
-            path.forEach {
-                position = it(position, boundary) {
-                    instructions.invalid()
-                }
+            var position = readStartAt(startAt, boundary)
+            val path = readPath(instructions)
+            path.forEach { instruction ->
+                position =
+                    instructions.execute(instruction, position, boundary)
             }
             println("${position.x} ${position.y} ${position.facing}")
         }
     }
+}
+
+private fun readBoundary(lines: MutableList<InputLine>): Boundary {
+    val firstLine = lines.removeAt(0)
+    try {
+        return firstLine.toBoundary()
+    } catch (e: MalformedInputException) {
+        firstLine.invalid()
+    }
+}
+
+private fun readStartAt(
+    startAt: InputLine,
+    boundary: Boundary,
+): Position = try {
+    startAt.toPosition(boundary)
+} catch (e: MalformedInputException) {
+    startAt.invalid()
+}
+
+private fun readPath(instructions: InputLine): Path = try {
+    instructions.toPath()
+} catch (e: MalformedInputException) {
+    instructions.invalid()
+}
+
+private fun InputLine.execute(
+    instruction: Instruction,
+    position: Position,
+    boundary: Boundary,
+) = try {
+    instruction(position, boundary)
+} catch (e: MalformedInputException) {
+    invalid()
 }

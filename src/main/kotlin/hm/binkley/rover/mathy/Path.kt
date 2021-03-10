@@ -7,6 +7,6 @@ fun InputLine.toPath() =
     // TODO: How to avoid string -> chars -> strings -> instructions?
     Path(
         data.map {
-            it.toString().toInstruction { invalid() }
+            it.toString().toInstruction()
         }
     )
