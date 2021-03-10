@@ -222,6 +222,11 @@ most but even so sometimes with difficult corner cases.
 
 ## Releases
 
+### 5-SNAPSHOT
+
+* Contrast "OOP" and "math" approaches.
+* Tackle boundary and input errors.
+
 ### 4
 
 * Ported to Kotlin.

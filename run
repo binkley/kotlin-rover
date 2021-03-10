@@ -4,7 +4,7 @@
 # Edit these to suit
 readonly package=hm.binkley.rover
 readonly artifactId=kotlin-rover
-readonly version=4
+readonly version=5-SNAPSHOT
 
 # No editable parts below here
 
