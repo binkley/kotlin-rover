@@ -36,5 +36,5 @@ private fun IndexedValue<String>.readInstruction(ins: Char) =
     try {
         follow(ins.toString())
     } catch (e: IllegalArgumentException) {
-        throw IllegalArgumentException("Line #$index: Malformed input: $value")
+        throw IllegalArgumentException("Line #$index: Malformed input: $value: Not an instruction: $ins")
     }

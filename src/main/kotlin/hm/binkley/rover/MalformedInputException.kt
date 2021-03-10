@@ -1,4 +1,4 @@
-package hm.binkley.rover.mathy
+package hm.binkley.rover
 
 class MalformedInputException(
     message: String,

@@ -1,5 +1,7 @@
 package hm.binkley.rover.mathy
 
+import hm.binkley.rover.MalformedInputException
+
 inline class Distance(val d: Int) {
     operator fun plus(addend: Distance) = Distance(d + addend.d)
 

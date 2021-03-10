@@ -66,55 +66,55 @@ private fun EntryPoint.assertStaysInPlace() =
 private fun EntryPoint.assertMissingBoundary() =
     assertMalformedInput(
         missingBoundaryInLines,
-        "Line #1: Malformed input: 1 2 N"
+        "Line #1: Malformed input: 1 2 N: Boundary must have 2 elements"
     )
 
 private fun EntryPoint.assertMissingPosition() =
     assertMalformedInput(
         missingPositionInLines,
-        "Line #2: Malformed input: LMLMLMLMM"
+        "Line #2: Malformed input: LMLMLMLMM: Position must have 3 elements"
     )
 
 private fun EntryPoint.assertBadStartingPosition() =
     assertMalformedInput(
         badStartingPositionInLines,
-        "Line #2: Malformed input: 1 N"
+        "Line #2: Malformed input: 1 N: Position must have 3 elements"
     )
 
 private fun EntryPoint.assertBadDirection() =
     assertMalformedInput(
         badDirectionInLines,
-        "Line #2: Malformed input: 1 2 Q"
+        "Line #2: Malformed input: 1 2 Q: Not a direction: Q"
     )
 
 private fun EntryPoint.assertBadInstruction() =
     assertMalformedInput(
         badInstructionInLines,
-        "Line #3: Malformed input: Q"
+        "Line #3: Malformed input: MQ: Not an instruction: Q"
     )
 
 private fun EntryPoint.assertStartingPastXBoundary() =
     assertMalformedInput(
         startingPastXBoundaryInLines,
-        "Line #2: Malformed input: 6 2 N"
+        "Line #2: Malformed input: 6 2 N: Out of bounds: (5, 5) < (6, 2)"
     )
 
 private fun EntryPoint.assertStartingPastYBoundary() =
     assertMalformedInput(
         startingPastYBoundaryInLines,
-        "Line #2: Malformed input: 1 6 N"
+        "Line #2: Malformed input: 1 6 N: Out of bounds: (5, 5) < (1, 6)"
     )
 
 private fun EntryPoint.assertMovingPastXBoundary() =
     assertMalformedInput(
         movingPastXBoundaryInLines,
-        "Line #3: Malformed input: M"
+        "Line #3: Malformed input: M: Out of bounds: (0, 0) < (1, 0)"
     )
 
 private fun EntryPoint.assertMovingPastYBoundary() =
     assertMalformedInput(
         movingPastYBoundaryInLines,
-        "Line #3: Malformed input: M"
+        "Line #3: Malformed input: M: Out of bounds: (0, 0) < (0, 1)"
     )
 
 private fun EntryPoint.assertMalformedInput(

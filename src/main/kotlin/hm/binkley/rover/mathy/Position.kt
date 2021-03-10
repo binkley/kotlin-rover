@@ -6,7 +6,7 @@ data class Position(val x: Distance, val y: Distance, val facing: Direction)
 
 fun InputLine.toPosition(boundary: Boundary): Position {
     val lexed = space.split(data)
-    if (lexed.size != 3) invalid()
+    if (lexed.size != 3) invalid("Position must have 3 elements")
     val x = lexed[0].toDistance()
     val y = lexed[1].toDistance()
 

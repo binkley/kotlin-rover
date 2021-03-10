@@ -1,5 +1,6 @@
 package hm.binkley.rover.oopy
 
+import hm.binkley.rover.mathy.InputLine
 import hm.binkley.rover.space
 
 data class Path(
@@ -31,7 +32,7 @@ fun IndexedValue<String>.toPath(program: Program): Path {
                 program.next(this),
             )
         }
-        else -> throw IllegalArgumentException("Line #$index: Malformed input: $value")
+        else -> throw IllegalArgumentException("Line #$index: Malformed input: $value: Position must have 3 elements")
     }
 }
 
@@ -39,5 +40,5 @@ private fun IndexedValue<String>.readRotation(rot: String) =
     try {
         rotate(rot)
     } catch (e: IllegalArgumentException) {
-        throw IllegalArgumentException("Line #$index: Malformed input: $value")
+        throw IllegalArgumentException("Line #$index: Malformed input: $value: Not a direction: $rot")
     }

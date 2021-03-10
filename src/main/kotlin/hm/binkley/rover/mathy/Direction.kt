@@ -1,5 +1,7 @@
 package hm.binkley.rover.mathy
 
+import hm.binkley.rover.MalformedInputException
+
 data class Direction(val x: Int, val y: Int) {
     override fun toString() =
         when (this) {

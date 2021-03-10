@@ -2,7 +2,6 @@ package hm.binkley.rover
 
 import hm.binkley.rover.mathy.Boundary
 import hm.binkley.rover.mathy.InputLine
-import hm.binkley.rover.mathy.MalformedInputException
 import hm.binkley.rover.mathy.Position
 import hm.binkley.rover.mathy.execute
 import hm.binkley.rover.mathy.inputLines
@@ -38,7 +37,7 @@ private fun MutableList<InputLine>.readBoundary(): Boundary {
     try {
         return firstLine.toBoundary()
     } catch (e: MalformedInputException) {
-        firstLine.invalid()
+        firstLine.invalid(cause = e)
     }
 }
 
@@ -47,7 +46,7 @@ private fun InputLine.readWith(
 ): Position = try {
     toPosition(boundary)
 } catch (e: MalformedInputException) {
-    invalid()
+    invalid(cause = e)
 }
 
 private fun InputLine.readWithAndExecute(
@@ -56,5 +55,5 @@ private fun InputLine.readWithAndExecute(
 ) = try {
     toPath().execute(position, boundary)
 } catch (e: MalformedInputException) {
-    invalid()
+    invalid(cause = e)
 }

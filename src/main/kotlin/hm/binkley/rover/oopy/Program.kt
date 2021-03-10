@@ -22,6 +22,6 @@ fun IndexedValue<String>.toBoundary(): Program {
             val (x, y) = q
             return Program(x.toInt(), y.toInt(), this)
         }
-        else -> throw IllegalArgumentException("Line #$index: Malformed input: $value")
+        else -> throw IllegalArgumentException("Line #$index: Malformed input: $value: Boundary must have 2 elements")
     }
 }

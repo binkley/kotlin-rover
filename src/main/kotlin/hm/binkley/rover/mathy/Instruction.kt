@@ -1,5 +1,7 @@
 package hm.binkley.rover.mathy
 
+import hm.binkley.rover.MalformedInputException
+
 enum class Instruction(val rotation: Rotation) {
     M(Rotation(1, 0, 0, 1)),
     L(Rotation(0, -1, 1, 0)),
