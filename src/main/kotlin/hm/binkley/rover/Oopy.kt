@@ -20,7 +20,7 @@ object Oopy {
         lines.chunked(2).forEach { (startAt, instructions) ->
             // Could use fold here, but this seems more readable to me
             var path = startAt.toPath(boundary)
-            instructions.value.forEach { path = it.from(path, instructions) }
+            instructions.value.forEach { path = it.readWith(path, instructions) }
             println(path)
         }
     }
@@ -29,7 +29,7 @@ object Oopy {
 // TODO: These functions are awkward -- what should "this" be?
 // TODO: Hide "Char" lower in callstack as an implementation detail
 
-private fun Char.from(path: Path, line: IndexedValue<String>) =
+private fun Char.readWith(path: Path, line: IndexedValue<String>) =
     path.next(line.readInstruction(this), line)
 
 private fun IndexedValue<String>.readInstruction(ins: Char) =

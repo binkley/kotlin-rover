@@ -2,13 +2,11 @@ package hm.binkley.rover
 
 import hm.binkley.rover.mathy.Boundary
 import hm.binkley.rover.mathy.InputLine
-import hm.binkley.rover.mathy.Instruction
 import hm.binkley.rover.mathy.MalformedInputException
-import hm.binkley.rover.mathy.Path
 import hm.binkley.rover.mathy.Position
+import hm.binkley.rover.mathy.execute
 import hm.binkley.rover.mathy.inputLines
 import hm.binkley.rover.mathy.invalid
-import hm.binkley.rover.mathy.invoke
 import hm.binkley.rover.mathy.toBoundary
 import hm.binkley.rover.mathy.toPath
 import hm.binkley.rover.mathy.toPosition
@@ -27,15 +25,10 @@ object Mathy {
         val lines = inputLines().toMutableList()
         val boundary = lines.readBoundary()
         lines.chunked(2).forEach { (startAt, instructions) ->
-            // Could use fold here, but this seems more readable to me
-            var position = startAt.readStartAt(boundary)
+            val position = startAt.readWith(boundary)
+            val stop = instructions.readWithAndExecute(position, boundary)
 
-            instructions.readPath().forEach { instruction ->
-                position =
-                    instructions.execute(instruction, position, boundary)
-            }
-
-            println("${position.x} ${position.y} ${position.facing}")
+            println("${stop.x} ${stop.y} ${stop.facing}")
         }
     }
 }
@@ -49,7 +42,7 @@ private fun MutableList<InputLine>.readBoundary(): Boundary {
     }
 }
 
-private fun InputLine.readStartAt(
+private fun InputLine.readWith(
     boundary: Boundary,
 ): Position = try {
     toPosition(boundary)
@@ -57,18 +50,11 @@ private fun InputLine.readStartAt(
     invalid()
 }
 
-private fun InputLine.readPath(): Path = try {
-    toPath()
-} catch (e: MalformedInputException) {
-    invalid()
-}
-
-private fun InputLine.execute(
-    instruction: Instruction,
+private fun InputLine.readWithAndExecute(
     position: Position,
     boundary: Boundary,
 ) = try {
-    instruction(position, boundary)
+    toPath().execute(position, boundary)
 } catch (e: MalformedInputException) {
     invalid()
 }

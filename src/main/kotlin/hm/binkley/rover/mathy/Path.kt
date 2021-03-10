@@ -1,6 +1,6 @@
 package hm.binkley.rover.mathy
 
-class Path(private val instructions: List<Instruction>) :
+class Path(val instructions: List<Instruction>) :
     List<Instruction> by instructions
 
 fun InputLine.toPath() =
@@ -10,3 +10,8 @@ fun InputLine.toPath() =
             it.toString().toInstruction()
         }
     )
+
+fun Path.execute(startAt: Position, boundary: Boundary) =
+    instructions.fold(startAt) { position, instruction ->
+        instruction(position, boundary)
+    }
