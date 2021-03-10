@@ -224,25 +224,26 @@ most but even so sometimes with difficult corner cases.
 
 ### 4
 
-Ported to Kotlin.
+* Ported to Kotlin.
 
 ### 3
 
-(Java) Over-engineered math example. Parsing still primitive.
+* (Java) Over-engineered math example. Parsing still primitive.
 
 ### 2
 
-(Java) "Math"-style works correctly using rotation matrices from the circle
-group.
+* (Java) "math"-style works correctly using rotation matrices from the circle
+  group.
 
 ### 1
 
-(Java) Testing. Vanilla "C" version (in Java) works correctly. Quite succinct.
+* (Java) Testing. Vanilla "C" version (in Java) works correctly. Quite
+  succinct.
 
 ### 0
 
-(Java) It builds. Completely empty otherwise. This is a tracer release for
-GitHub.
+* (Java) It builds. Completely empty otherwise. This is a tracer release for
+  GitHub.
 
 ---
 
