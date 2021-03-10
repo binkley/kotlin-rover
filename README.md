@@ -39,7 +39,7 @@ Try `./batect run` for a demonstration as CI would.
 * [Build and try](#build-and-try)
 * [Problem statement](#problem-statement)
 * [Remarks](#remarks)
-* [Approach](#approach)
+* [Approaches](#approaches)
 * [Releases](#releases)
 * [Further reading](#further-reading)
 
@@ -99,7 +99,7 @@ MMRMMRMRRM
 
 ---
 
-## Approach
+## Approaches
 
 The Rover Problem describes a series of vector additions in terms of simple
 commands to a hypothetical Mars Rover vehicle.
@@ -159,21 +159,24 @@ right).
 
 I presented these
 solutions&mdash;["C" style](./src/main/kotlin/hm/binkley/rover/CStyle.kt) and
-["math" style](src/main/kotlin/hm/binkley/rover/Oopy.kt)&mdash;to
-coworkers, both of which surprised them. I expected that
+["OOP" style](src/main/kotlin/hm/binkley/rover/Oopy.kt)&mdash;to coworkers,
+both of which surprised them; and I've added a
+["math" style](src/main/kotlin/hm/binkley/rover/Mathy.kt) more focused on the
+rotation group. I expected that
 [matrix form](https://en.wikipedia.org/wiki/Rotation_matrix) of
 [the circle group](https://en.wikipedia.org/wiki/Circle_group) is unfamiliar
-to most. Myself, I was surprised that the "C" style was unfamiliar! None I
-spoke with had familiarity with "C" or FORTRAN or other classical means of
-programming. In fact, the "math" style, though abstract algebra was not
-understood, spoke more to them by its use of OOP.
+to most. Myself, I was surprised that the "C" style was unfamiliar to
+coworkers! (None I spoke with had familiarity with "C" or FORTRAN or other
+classical means of programming.) In fact, the "OOP" style, though abstract
+algebra was not understood, spoke more to them by its use of OOP.
 
 An actual Mars Rover would code using the "C" style approach&mdash;you have
 limited hardware, harsh conditions, and need absolute certainty of
 correctness, something more easily confirmed automatically with a "C"
-style of code than OOP. Automated or formal verification
-is [an important CS research
-area](https://en.wikipedia.org/wiki/Formal_verification).
+style of code than OOP, and heavily optimized by compilers. Automated or
+formal verification
+is [an important CS research area](https://en.wikipedia.org/wiki/Formal_verification)
+.
 
 ### Problem problems
 
@@ -201,19 +204,19 @@ mention [keyboard](http://www.users.cloud9.net/~bradmcc/gif/APL_keyboard.gif).
 
 ### Errors
 
-To properly diagnose errors in the input requires a "mini-compiler": treat 
-the input as a DSL (which it actually is).  For example, a real Mars Rover 
-would report to Earth any of these conditions:
+To properly diagnose errors in the input requires a "mini-compiler": treat the
+input as a DSL (which it actually is). For example, a real Mars Rover would
+report to Earth any of these conditions:
 
 - Missing boundary conditions with input data line number (the first line)
-- Malformed position line in the alternating subsequent lines with input 
-  data line number
-- Malformed turn/movement instructions in the post-alternating subsequent 
+- Malformed position line in the alternating subsequent lines with input data
+  line number
+- Malformed turn/movement instructions in the post-alternating subsequent
   lines with input data line number
 
-Tracking line numbers in the input implies a true DSL parser.  This is a 
-challenging problem for existing compilers of programming languages, 
-solved by most but even so sometimes with difficult corner cases.
+Tracking line numbers in the input implies a true DSL parser. This is a
+challenging problem for existing compilers of programming languages, solved by
+most but even so sometimes with difficult corner cases.
 
 ---
 
