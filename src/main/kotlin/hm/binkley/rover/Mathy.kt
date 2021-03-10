@@ -29,11 +29,12 @@ object Mathy {
         lines.chunked(2).forEach { (startAt, instructions) ->
             // Could use fold here, but this seems more readable to me
             var position = startAt.readStartAt(boundary)
-            val path = instructions.readPath()
-            path.forEach { instruction ->
+
+            instructions.readPath().forEach { instruction ->
                 position =
                     instructions.execute(instruction, position, boundary)
             }
+
             println("${position.x} ${position.y} ${position.facing}")
         }
     }
