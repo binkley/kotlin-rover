@@ -25,11 +25,11 @@ object Mathy {
     fun main(vararg args: String) {
         // TODO: Stream, not convert to list
         val lines = inputLines().toMutableList()
-        val boundary = readBoundary(lines)
+        val boundary = lines.readBoundary()
         lines.chunked(2).forEach { (startAt, instructions) ->
             // Could use fold here, but this seems more readable to me
-            var position = readStartAt(startAt, boundary)
-            val path = readPath(instructions)
+            var position = startAt.readStartAt(boundary)
+            val path = instructions.readPath()
             path.forEach { instruction ->
                 position =
                     instructions.execute(instruction, position, boundary)
@@ -39,8 +39,8 @@ object Mathy {
     }
 }
 
-private fun readBoundary(lines: MutableList<InputLine>): Boundary {
-    val firstLine = lines.removeAt(0)
+private fun MutableList<InputLine>.readBoundary(): Boundary {
+    val firstLine = removeAt(0)
     try {
         return firstLine.toBoundary()
     } catch (e: MalformedInputException) {
@@ -48,19 +48,18 @@ private fun readBoundary(lines: MutableList<InputLine>): Boundary {
     }
 }
 
-private fun readStartAt(
-    startAt: InputLine,
+private fun InputLine.readStartAt(
     boundary: Boundary,
 ): Position = try {
-    startAt.toPosition(boundary)
+    toPosition(boundary)
 } catch (e: MalformedInputException) {
-    startAt.invalid()
+    invalid()
 }
 
-private fun readPath(instructions: InputLine): Path = try {
-    instructions.toPath()
+private fun InputLine.readPath(): Path = try {
+    toPath()
 } catch (e: MalformedInputException) {
-    instructions.invalid()
+    invalid()
 }
 
 private fun InputLine.execute(
