@@ -19,12 +19,6 @@ internal class MainTest {
 
     @ParameterizedTest
     @MethodSource("assertions")
-    fun `should work for OOP-style implementation`(assertion: EntryPoint.() -> Unit) {
-        Oopy::main.assertion()
-    }
-
-    @ParameterizedTest
-    @MethodSource("assertions")
     fun `should work for math style implementation`(assertion: EntryPoint.() -> Unit) {
         Mathy::main.assertion()
     }

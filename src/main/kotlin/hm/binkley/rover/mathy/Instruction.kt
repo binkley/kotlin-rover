@@ -2,11 +2,11 @@ package hm.binkley.rover.mathy
 
 import hm.binkley.rover.MalformedInputException
 
-enum class Instruction(val rotation: Rotation) {
-    M(Rotation(1, 0, 0, 1)),
-    L(Rotation(0, -1, 1, 0)),
-    B(Rotation(-1, 0, 0, -1)),
-    R(Rotation(0, 1, -1, 0)),
+enum class Instruction(val rotation: Rotation, val move: Int) {
+    M(Rotation(1, 0, 0, 1), 1), // No rotation
+    L(Rotation(0, -1, 1, 0), 0),
+    B(Rotation(1, 0, 0, 1), -1), // No rotation
+    R(Rotation(0, 1, -1, 0), 0),
 }
 
 fun String.toInstruction() = try {
@@ -21,7 +21,8 @@ operator fun Instruction.invoke(
 ): Position {
     // TODO: Combine rotating and scaling into single op or fun
     val newFacing = rotation * position.facing
-    val (addX, addY) = rotation.scaling * newFacing
+    val direction = rotation.scaling * newFacing
+    val (addX, addY) = move * direction
     val newX = position.x + addX.toDistance()
     val newY = position.y + addY.toDistance()
 

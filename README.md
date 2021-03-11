@@ -159,21 +159,19 @@ right).
 
 I presented these
 solutions&mdash;["C" style](./src/main/kotlin/hm/binkley/rover/CStyle.kt) and
-["OOP" style](src/main/kotlin/hm/binkley/rover/Oopy.kt)&mdash;to coworkers,
-both of which surprised them; and I've added a
-["math" style](src/main/kotlin/hm/binkley/rover/Mathy.kt) more focused on the
-rotation group. I expected that
+["math" style](src/main/kotlin/hm/binkley/rover/Mathy.kt)&mdash;to coworkers,
+both of which surprised them. I expected that
 [matrix form](https://en.wikipedia.org/wiki/Rotation_matrix) of
 [the circle group](https://en.wikipedia.org/wiki/Circle_group) is unfamiliar
 to most. Myself, I was surprised that the "C" style was unfamiliar to
 coworkers! (None I spoke with had familiarity with "C" or FORTRAN or other
-classical means of programming.) In fact, the "OOP" style, though abstract
+classical means of programming.) In fact, the "math" style, though abstract
 algebra was not understood, spoke more to them by its use of OOP.
 
 An actual Mars Rover would code using the "C" style approach&mdash;you have
 limited hardware, harsh conditions, and need absolute certainty of
 correctness, something more easily confirmed automatically with a "C"
-style of code than OOP, and heavily optimized by compilers. Automated or
+style of code than "math", and heavily optimized by compilers. Automated or
 formal verification
 is [an important CS research area](https://en.wikipedia.org/wiki/Formal_verification)
 .
@@ -224,7 +222,7 @@ most but even so sometimes with difficult corner cases.
 
 ### 5-SNAPSHOT
 
-* Contrast "OOP" and "math" approaches.
+* Drop "OOP" approach: too much duplication with "mathy"
 * Tackle boundary and input errors.
 
 ### 4
