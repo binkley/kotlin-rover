@@ -11,8 +11,8 @@ enum class Instruction(val rotation: Rotation, val move: Int) {
 
 fun String.toInstruction() = try {
     Instruction.valueOf(this)
-} catch (e: IllegalArgumentException) {
-    throw MalformedInputException("Not an instruction: $this", e)
+} catch (_: IllegalArgumentException) {
+    throw MalformedInputException("Not an instruction: $this")
 }
 
 operator fun Instruction.invoke(

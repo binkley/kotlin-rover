@@ -10,8 +10,8 @@ inline class Distance(val d: Int) {
 
 fun String.toDistance() = try {
     Distance(toInt())
-} catch (e: NumberFormatException) {
-    throw MalformedInputException("Not a distance: $this", e)
+} catch (_: NumberFormatException) {
+    throw MalformedInputException("Not a distance: $this")
 }
 
 fun Int.toDistance() = Distance(this)
