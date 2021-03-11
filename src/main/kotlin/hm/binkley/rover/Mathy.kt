@@ -25,9 +25,9 @@ object Mathy {
         val boundary = lines.readBoundary()
         lines.chunked(2).forEach { (startAt, instructions) ->
             val position = startAt.readWith(boundary)
-            val stop = instructions.readWithAndExecute(position, boundary)
+            val endAt = instructions.readWithAndExecute(position, boundary)
 
-            println("${stop.x} ${stop.y} ${stop.facing}")
+            println("${endAt.x} ${endAt.y} ${endAt.facing}")
         }
     }
 }
