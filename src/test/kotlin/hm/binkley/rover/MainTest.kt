@@ -25,6 +25,7 @@ internal class MainTest {
 
     companion object {
         @JvmStatic
+        @Suppress("unused") // JUnit calls it reflectively
         fun assertions() = listOf(
             EntryPoint::assertInAndOut,
             EntryPoint::assertStaysInPlace,
