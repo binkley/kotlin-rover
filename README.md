@@ -183,38 +183,38 @@ _over-specified_. I suspect this is intentional: that the problem-givers are
 looking to see if problem-solvers notice, and if so, how they might address.
 For example:
 
-- Why does the grid have a boundary limit?
+- Why does the grid have a boundary limit? The surface of a globe has no
+  boundary
 - The sample input does not approach the boundary
-- What should be the behavior for invalid input?
+- What should be the behavior for malformed input?
 - How to manage a "squad" of rovers? Can the crash into each other?
 - Why are starting positions for next instruction not the same as ending
-  positions after following the current instructions?
+  positions after following the current instructions? Are these representing
+  different rovers?
 
-An actual Mars Rover would need to handle these sensibly, and they are not, in
-fact, simple problems. Consider other programmed hardware, such as a
-pacemaker: How to stay alive when there is malformed input to the software?
+An actual Mars Rover would need to handle these issues sensibly, and they are
+not, in fact, simple problems. Consider other programmed hardware, such as a
+pacemaker: How to keep someone alive when there is malformed input to the
+software?
+
+#### Humor
 
 Honestly I would prefer a solution in
 [APL](http://archive.vector.org.uk/art10011550), extremely well-suited to the
-task. For the golf version of this problem, APL is ideal. However, I was
-unable to find a workable text editor on Mac OS X for the language, not to
-mention [keyboard](http://www.users.cloud9.net/~bradmcc/gif/APL_keyboard.gif).
+task. For the golf version of this problem, APL is ideal, but utterly
+unmaintainable. However, I was unable to find a workable text editor on Mac OS
+X for the language, not to mention
+[keyboard](http://www.users.cloud9.net/~bradmcc/gif/APL_keyboard.gif).
 
 ### Errors
 
 To properly diagnose errors in the input requires a "mini-compiler": treat the
-input as a DSL (which it actually is). For example, a real Mars Rover would
-report to Earth any of these conditions:
+input as a DSL (which it is). For example, a real Mars Rover would report to
+Earth any of these conditions:
 
-- Missing boundary conditions with input data line number (the first line)
-- Malformed position line in the alternating subsequent lines with input data
-  line number
-- Malformed turn/movement instructions in the post-alternating subsequent
-  lines with input data line number
-
-Tracking line numbers in the input implies a true DSL parser. This is a
-challenging problem for existing compilers of programming languages, solved by
-most but even so sometimes with difficult corner cases.
+- Malformed input
+- Hitting boundaries
+- Crashing into another rover
 
 ---
 
@@ -222,7 +222,7 @@ most but even so sometimes with difficult corner cases.
 
 ### 5-SNAPSHOT
 
-* Drop "OOP" approach: too much duplication with "mathy"
+* Drop "OOP" approach: too much duplication with "mathy".
 * Tackle boundary and input errors.
 
 ### 4
