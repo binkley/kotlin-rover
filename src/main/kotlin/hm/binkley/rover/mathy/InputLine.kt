@@ -11,7 +11,7 @@ internal fun InputLine.invalid(
     message: String? = null,
     cause: Exception? = null,
 ): Nothing {
-    // TODO: Can Kotlin clean up a mess like this?
+    // TODO: Clean up this mess
     if (null == message)
         if (null == cause)
             throw IllegalArgumentException("Line #$number: Malformed input: $data")

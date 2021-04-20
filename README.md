@@ -257,6 +257,7 @@ Earth any of these conditions:
 - [_Mars Exploration Rovers_](https://mars.nasa.gov/mer/)
 - [_Print Detailed Mars
   Facts_](https://mars.nasa.gov/print/?print=detailedfacts)
+- [Mars Rover in Python and Haskell](http://arunrocks.com/mars-rover-in-python-and-haskell/)
 
 ### The "C" solution
 

@@ -11,11 +11,9 @@ import hm.binkley.rover.mathy.toPath
 import hm.binkley.rover.mathy.toPosition
 
 /**
- * `MathMain` is a more OOP-y approach to the Rover problem based on
+ * `Mathy` is a more OOP-y approach to the Rover problem based on
  * [matrix form](https://en.wikipedia.org/wiki/Rotation_matrix) of
  * [the circle group](https://en.wikipedia.org/wiki/Circle_group).
- *
- * See [Mars Rover in Python and Haskell](http://arunrocks.com/mars-rover-in-python-and-haskell/).
  */
 object Mathy {
     @JvmStatic
