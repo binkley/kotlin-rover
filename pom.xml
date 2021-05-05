@@ -183,7 +183,6 @@
                 <configuration>
                     <args>
                         <arg>-Werror</arg>
-                        <arg>-Xinline-classes</arg>
                     </args>
                     <jvmTarget>${jdk.version}</jvmTarget>
                 </configuration>
