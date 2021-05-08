@@ -8,3 +8,10 @@ data class Rotation(
 )
 
 val Rotation.scaling get() = a * d
+
+operator fun Rotation.times(direction: Direction): Direction {
+    return Direction(
+        a * direction.x + b * direction.y,
+        c * direction.x + d * direction.y,
+    )
+}

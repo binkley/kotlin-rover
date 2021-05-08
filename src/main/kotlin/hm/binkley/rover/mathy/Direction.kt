@@ -25,10 +25,3 @@ fun String.toDirection() = when (this) {
     "E" -> E
     else -> throw MalformedInputException("Not a direction: $this")
 }
-
-operator fun Rotation.times(direction: Direction): Direction {
-    return Direction(
-        a * direction.x + b * direction.y,
-        c * direction.x + d * direction.y,
-    )
-}
