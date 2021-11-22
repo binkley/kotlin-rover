@@ -36,19 +36,19 @@
         <!-- @formatter:off -->
         <buildplan-maven-plugin.version>1.4</buildplan-maven-plugin.version>
         <dependency-check-maven.version>6.2.2</dependency-check-maven.version>
-        <detekt-maven-plugin.version>1.17.1</detekt-maven-plugin.version>
+        <detekt-maven-plugin.version>1.18.1.1</detekt-maven-plugin.version>
         <failIfNoTests>true</failIfNoTests>
         <failsafe.printSummary>false</failsafe.printSummary>
         <generateBackupPoms>false</generateBackupPoms>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <java.charset>UTF-8</java.charset>
-        <jdk.version>11</jdk.version>
-        <junit.version>5.8.0</junit.version>
-        <kotest.version>5.0.0.M2</kotest.version>
+        <jdk.version>17</jdk.version>
+        <junit.version>5.8.1</junit.version>
+        <kotest.version>5.0.0.RC</kotest.version>
         <kotlin.code.style>official</kotlin.code.style>
-        <kotlin.version>1.5.31</kotlin.version>
-        <ktlint-maven-plugin.version>1.9.0</ktlint-maven-plugin.version>
-        <lombok.version>1.18.20</lombok.version>
+        <kotlin.version>1.6.0</kotlin.version>
+        <ktlint-maven-plugin.version>1.11.0</ktlint-maven-plugin.version>
+        <lombok.version>1.18.22</lombok.version>
         <main.class>hm.binkley.rover.CStyle</main.class>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
