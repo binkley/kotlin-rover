@@ -35,7 +35,7 @@
     <properties>
         <!-- @formatter:off -->
         <buildplan-maven-plugin.version>1.4</buildplan-maven-plugin.version>
-        <dependency-check-maven.version>6.2.2</dependency-check-maven.version>
+        <dependency-check-maven.version>6.5.0</dependency-check-maven.version>
         <detekt-maven-plugin.version>1.18.1.1</detekt-maven-plugin.version>
         <failIfNoTests>true</failIfNoTests>
         <failsafe.printSummary>false</failsafe.printSummary>
