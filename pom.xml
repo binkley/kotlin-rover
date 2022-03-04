@@ -35,7 +35,6 @@
     <properties>
         <!-- @formatter:off -->
         <buildplan-maven-plugin.version>1.4</buildplan-maven-plugin.version>
-        <dependency-check-maven.version>6.5.0</dependency-check-maven.version>
         <detekt-maven-plugin.version>1.18.1.1</detekt-maven-plugin.version>
         <failIfNoTests>true</failIfNoTests>
         <failsafe.printSummary>false</failsafe.printSummary>
@@ -312,21 +311,6 @@
                 <executions>
                     <execution>
                         <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.owasp</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <version>${dependency-check-maven.version}</version>
-                <configuration>
-                    <skip>${owasp.skip}</skip>
-                </configuration>
-                <executions>
-                    <execution>
                         <goals>
                             <goal>check</goal>
                         </goals>
