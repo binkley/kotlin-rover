@@ -23,13 +23,13 @@ in Kotlin. This code is a "finger exercise" written for pleasure.
 
 To build, use `./mvnw clean verify`.
 
-Try `./run < src/test/resources/input` for a demonstration.
+Try `./run` for a demonstration.
 
 There are no run-time dependencies beyond the Kotlin standard library.
 
 To build as CI would, use `./batect build`.
 
-Try `./batect run` for a demonstration as CI would.
+Try `./batect demo` for a demonstration as CI would.
 
 ---
 
