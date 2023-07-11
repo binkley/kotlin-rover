@@ -42,28 +42,28 @@
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <java.charset>UTF-8</java.charset>
         <jdk.version>17</jdk.version>
-        <junit.version>5.9.1</junit.version>
-        <kotest.version>5.5.4</kotest.version>
+        <junit.version>5.9.3</junit.version>
+        <kotest.version>5.6.2</kotest.version>
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.version>1.9.0</kotlin.version>
-        <ktlint-maven-plugin.version>1.15.2</ktlint-maven-plugin.version>
-        <lombok.version>1.18.24</lombok.version>
+        <ktlint-maven-plugin.version>1.16.0</ktlint-maven-plugin.version>
+        <lombok.version>1.18.28</lombok.version>
         <main.class>hm.binkley.rover.CStyle</main.class>
         <maven-assembly-plugin.version>3.4.2</maven-assembly-plugin.version>
         <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-        <maven-dependency-plugin.version>3.3.0</maven-dependency-plugin.version>
+        <maven-dependency-plugin.version>3.5.0</maven-dependency-plugin.version>
         <maven-help-plugin.version>3.2.0</maven-help-plugin.version>
         <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M6</maven-surefire-plugin.version>
         <owasp.skip>false</owasp.skip>
-        <pitest-junit5-plugin.version>1.1.0</pitest-junit5-plugin.version>
-        <pitest-maven.version>1.9.11</pitest-maven.version>
+        <pitest-junit5-plugin.version>1.1.2</pitest-junit5-plugin.version>
+        <pitest-maven.version>1.11.0</pitest-maven.version>
         <project.build.sourceEncoding>${java.charset}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${java.charset}</project.reporting.outputEncoding>
         <system-lambda.version>1.2.1</system-lambda.version>
         <surefire.printSummary>false</surefire.printSummary>
-        <versions-maven-plugin.version>2.13.0</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.14.2</versions-maven-plugin.version>
         <!-- @formatter:on -->
     </properties>
 
