@@ -12,22 +12,37 @@ internal fun InputLine.invalid(
     cause: Exception? = null,
 ): Nothing {
     // TODO: Clean up this mess
-    if (null == message)
-        if (null == cause)
-            throw IllegalArgumentException("Line #$number: Malformed input: $data")
-        else when (cause) {
-            is MalformedInputException -> throw IllegalArgumentException(
-                "Line #$number: Malformed input: $data: ${cause.message}"
+    if (null == message) {
+        if (null == cause) {
+            throw IllegalArgumentException(
+                "Line #$number: Malformed input: $data"
             )
-            else -> throw IllegalArgumentException("Line #$number: Malformed input: $data: $cause")
+        } else {
+            when (cause) {
+                is MalformedInputException -> throw IllegalArgumentException(
+                    "Line #$number: Malformed input: $data: ${cause.message}"
+                )
+
+                else -> throw IllegalArgumentException(
+                    "Line #$number: Malformed input: $data: $cause"
+                )
+            }
         }
-    else if (null == cause)
-        throw IllegalArgumentException("Line #$number: Malformed input: $data: $message")
-    else when (cause) {
-        is MalformedInputException -> throw IllegalArgumentException(
-            "Line #$number: Malformed input: $data: $message: ${cause.message}"
+    } else if (null == cause) {
+        throw IllegalArgumentException(
+            "Line #$number: Malformed input: $data: $message"
         )
-        else -> throw IllegalArgumentException("Line #$number: Malformed input: $data: $message: $cause")
+    } else {
+        when (cause) {
+            is MalformedInputException -> throw IllegalArgumentException(
+                "Line #$number: Malformed input: $data:" +
+                    " $message: ${cause.message}"
+            )
+
+            else -> throw IllegalArgumentException(
+                "Line #$number: Malformed input: $data: $message: $cause"
+            )
+        }
     }
 }
 

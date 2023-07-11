@@ -13,7 +13,8 @@ fun InputLine.toPosition(boundary: Boundary): Position {
     boundary.contains(x, y)
 
     return Position(
-        x, y,
+        x,
+        y,
         facing = lexed[2].toDirection(),
     )
 }

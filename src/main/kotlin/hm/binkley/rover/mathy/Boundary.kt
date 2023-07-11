@@ -17,6 +17,9 @@ fun InputLine.toBoundary(): Boundary {
 }
 
 fun Boundary.contains(x: Distance, y: Distance) {
-    if (this.x < x || this.y < y)
-        throw MalformedInputException("Out of bounds: (${this.x}, ${this.y}) < ($x, $y)")
+    if (this.x < x || this.y < y) {
+        throw MalformedInputException(
+            "Out of bounds: (${this.x}, ${this.y}) < ($x, $y)"
+        )
+    }
 }

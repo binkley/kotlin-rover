@@ -13,13 +13,17 @@ private typealias EntryPoint = (Array<out String>) -> Unit
 internal class MainTest {
     @ParameterizedTest
     @MethodSource("assertions")
-    fun `should work for C-style implementation`(assertion: EntryPoint.() -> Unit) {
+    fun `should work for C-style implementation`(
+        assertion: EntryPoint.() -> Unit
+    ) {
         CStyle::main.assertion()
     }
 
     @ParameterizedTest
     @MethodSource("assertions")
-    fun `should work for math style implementation`(assertion: EntryPoint.() -> Unit) {
+    fun `should work for math style implementation`(
+        assertion: EntryPoint.() -> Unit
+    ) {
         Mathy::main.assertion()
     }
 
